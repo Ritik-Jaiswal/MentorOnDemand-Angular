@@ -5,7 +5,7 @@
                     <div class="card-body">
                         <h3 class="card-title text-center">Send Request</h3>
     
-                        <form class="form-signin" (submit)="onSave()">
+                        <form class="form-signin" (submit)="onSubmit()">
                             <div class="form-label-group py-1">
                                 <label for="timeSlot">Time Slot</label>
                                 <select [(ngModel)]="timeSlot" id="timeSlot" name="timeSlot"
@@ -73,9 +73,15 @@
                                      value="{{skillData.prerequisites}}"
                                     class="form-control" required autofocus>
                             </div>
-    
-                            <button class="my-4 btn btn-lg btn-primary btn-block text-uppercase" type="submit">Send
-                                Request</button>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <button class="my-4 btn  btn-block btn-success" >Send
+                                        Request</button>
+                                </div>
+                                <div class="col-md-4"></div>
+                                <div class="col-md-4"><button class="my-4 btn  btn-block btn-danger" >Cancel</button></div>
+                            </div>
+                            
                         </form>
                     </div>
                 </div>

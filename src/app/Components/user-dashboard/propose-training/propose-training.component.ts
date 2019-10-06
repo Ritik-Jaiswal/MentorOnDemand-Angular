@@ -10,9 +10,6 @@ import { Router, ActivatedRoute } from '@angular/router';
 })
 export class ProposeTrainingComponent implements OnInit {
 
-
-
-
   paramId: number;
   trainerTechnology: string;
 
@@ -71,6 +68,30 @@ export class ProposeTrainingComponent implements OnInit {
       this.userData = data;
       console.log(this.userData);
     });
+  }
+
+  onSubmit(){
+    var result={
+      timeSlot: this.timeSlot,
+      startDate: this.startDate,
+      endDate: this.endDate,
+      userName: this.userData.firstName,
+      fees: this.skillData['fees'],
+      userId:this.userData.id,
+      mentorId:this.trainerData.id,
+      mentorName:this.trainerData.firstName,
+      skillId:this.skillData['id'],
+      skillName:this.skillData['name'],
+      requested:'True',
+      paymentStatus:null
+    }
+    console.log(result);
+    this.service.addtraining(result).subscribe(res => {
+      console.log(res);
+      console.log('request sent successfully');
+      this.router.navigate(['/user/notification'])
+    })
+
   }
 
 }

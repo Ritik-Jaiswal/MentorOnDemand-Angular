@@ -26,6 +26,12 @@ export class UserDtlService {
   addtech(result){
     return this.http.post(this.rootURL+"/addtech",result);
   } 
+  addtraining(result){
+    return this.http.post(this.rootURL+"/addtraining",result);
+  } 
+  addPayment(result){
+    return this.http.post(this.rootURL+"/addPayment",result);
+  } 
   refreshList(){
     return this.http.get(this.rootURL+"/showTech")
   }
@@ -43,10 +49,22 @@ export class UserDtlService {
   trainerList(name){
     return this.http.get(this.rootURL+"/searchTrainer/"+name)
   }
+  userTrainingList(id){
+    return this.http.get(this.rootURL+"/userTrainings/"+id)
+  }
+  mentorTrainingList(id){
+    return this.http.get(this.rootURL+"/mentorTrainings/"+id)
+  }
   skilldetails(name){
     return this.http.get(this.rootURL+"/skillByName/"+name)
   }
   refreshList1(trainerTechnology){
     return this.http.get(this.rootURL+"/skillByName/"+trainerTechnology)
+  }
+  trainingEdit(id,result){
+    return this.http.put(this.rootURL+"/trainingEdit/"+id,result)
+  }
+  trainingById(id){
+    return this.http.get(this.rootURL+"/trainingDetails/"+id)
   }
 }

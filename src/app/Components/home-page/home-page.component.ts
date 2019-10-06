@@ -179,7 +179,7 @@ export class HomePageComponent implements OnInit {
     this.service.signin(result2).subscribe(res => {
       console.log('successfully inserted')
     })
-    this.resetForm();
+    //this.resetForm();
   }
 
 /* -----------------------MENTOR LOGIN-------------------------- */

@@ -27,6 +27,8 @@ import { UserDtlService }from './Services/user-dtl.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AuthGuard } from './auth/auth.guard';
 import { ProposeTrainingComponent } from './Components/user-dashboard/propose-training/propose-training.component';
+import { UserNotificationComponent } from './Components/user-dashboard/user-notification/user-notification.component';
+import { MentorNotificationComponent } from './Components/mentor-dashboard/mentor-notification/mentor-notification.component';
 
 @NgModule({
   declarations: [
@@ -49,7 +51,9 @@ import { ProposeTrainingComponent } from './Components/user-dashboard/propose-tr
     AdminTechnologiesComponent,
     AdminBlockUserComponent,
     AdminBlockMentorComponent,
-    ProposeTrainingComponent
+    ProposeTrainingComponent,
+    UserNotificationComponent,
+    MentorNotificationComponent
   ],
   imports: [
     BrowserModule,

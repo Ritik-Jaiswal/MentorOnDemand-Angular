@@ -20,6 +20,8 @@ import { AdminPaymentsComponent } from './Components/admin-dashboard/admin-payme
 import { AdminTechnologiesComponent } from './Components/admin-dashboard/admin-technologies/admin-technologies.component';
 import { AuthGuard } from './auth/auth.guard';
 import { ProposeTrainingComponent } from './Components/user-dashboard/propose-training/propose-training.component';
+import { UserNotificationComponent } from './Components/user-dashboard/user-notification/user-notification.component';
+import { MentorNotificationComponent } from './Components/mentor-dashboard/mentor-notification/mentor-notification.component';
 
 const routes: Routes = [
   {path:'',redirectTo:'index',pathMatch:'full'},
@@ -31,7 +33,8 @@ const routes: Routes = [
     {path:'completed-trainings',component:UserCompletedTrainingsComponent},
     {path:'profile',component:UserProfileComponent},
     {path:'payments',component:UserPaymentComponent},
-    {path:'propose-training',component:ProposeTrainingComponent}
+    {path:'propose-training',component:ProposeTrainingComponent},
+    {path:'notification',component:UserNotificationComponent}
   ]},
   {path:'mentor',component:MentorDashboardComponent,
   children:[
@@ -39,7 +42,8 @@ const routes: Routes = [
     {path:'completed-trainings',component:MentorCompletedTrainingsComponent},
     {path:'profile',component:MentorProfileComponent},
     {path:'payments',component:MentorPaymentComponent},
-    {path:'edit-skills',component:MentorEditSkillsComponent}
+    {path:'edit-skills',component:MentorEditSkillsComponent},
+    {path:'notification',component:MentorNotificationComponent}
   ]},
   {path:'admin',component:AdminDashboardComponent,
   children:[

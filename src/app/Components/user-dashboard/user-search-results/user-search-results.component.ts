@@ -32,6 +32,7 @@ export class UserSearchResultsComponent implements OnInit {
     });
 
     this.getSkills();
+
   }
 Trainerdetails:object;
   onSubmit()
@@ -40,14 +41,12 @@ Trainerdetails:object;
         return;
       }
       
-      var name={
-        traning:this.Search.value.technology
-      }
-      console.log(name);
       this.service.trainerList(this.Search.value.technology).subscribe(data=>{
         this.Trainerdetails=data;
+        console.log('checking');
         console.log(this.Trainerdetails);
       });
+      
   
   }
   onPropose(Id)
