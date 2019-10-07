@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-
+import { UserDtlService } from 'src/app/Services/user-dtl.service';
+import * as _ from "underscore";
 @Component({
   selector: 'app-mentor-current-trainings',
   templateUrl: './mentor-current-trainings.component.html',
@@ -7,9 +8,23 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MentorCurrentTrainingsComponent implements OnInit {
 
-  constructor() { }
+  mentorId: any;
+  mentorTrainingData: object;
+  currentTraining: object;
+  TrainingData: object;
+  constructor(private service: UserDtlService) { }
 
   ngOnInit() {
+    this.mentorId = localStorage.getItem('mentor');
+    this.getTrainingByUserId();
+  }
+
+  getTrainingByUserId() {
+    this.service.mentorTrainingList(this.mentorId).subscribe(data => {
+      this.mentorTrainingData = data;
+      this.currentTraining = _.where(this.mentorTrainingData, { status: "current" });
+      console.log(this.currentTraining);
+    });
   }
 
 }

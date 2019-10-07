@@ -13,7 +13,7 @@
                                 <span class="glyphicon glyphicon-search"></span> Search Trainings
                             </button>
                         </div>
-                        <li class="nav-item" id="about-link" >
+                        <li class="nav-item"  >
                             <a class="nav-link" [routerLink]="['notification']" style="text-align: center; width: 150px;"><i class="fa fa-bell"> </i> Notification</a>
                         </li>  
                         <div class="dropdown">
@@ -22,7 +22,6 @@
                                 <a [routerLink]="['current-trainings']">Current Training</a>
                                 <a [routerLink]="['completed-trainings']">Completed Training</a>
                                 <a [routerLink]="['profile']">Profile</a>
-                                <a [routerLink]="['payments']">Payments</a>
                                 <a (click)="logout()">Logout</a>
                             </div>	  
                         </div>
