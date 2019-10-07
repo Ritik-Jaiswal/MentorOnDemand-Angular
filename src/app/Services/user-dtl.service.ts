@@ -15,6 +15,9 @@ export class UserDtlService {
 
   getData(result){
     return this.http.post(this.rootURL+"/GetAllData",result);
+  }
+  getAllData(){
+    return this.http.get(this.rootURL+"/GetAllData");
   }  
   signin(result){
     return this.http.post(this.rootURL+"/create",result);
@@ -45,6 +48,18 @@ export class UserDtlService {
   }
   skillList(){
     return this.http.get(this.rootURL+"/mentor")
+  }
+  paymentList(){
+    return this.http.get(this.rootURL+"/GetAllPayment")
+  }
+  paymentDetailsById(id){
+    return this.http.get(this.rootURL+"/paymentById/"+id)
+  }
+  paymentEdit(id,result){
+    return this.http.put(this.rootURL+"/paymentEdit/"+id,result)
+  }
+  userEdit(id,result){
+    return this.http.put(this.rootURL+"/EditUserData/"+id,result)
   }
   trainerList(name){
     return this.http.get(this.rootURL+"/searchTrainer/"+name)
