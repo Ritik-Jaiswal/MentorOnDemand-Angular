@@ -11,7 +11,6 @@
                             <button class=" btn  btn-block "  (click)="startTraining(items.id)">Start Training</button>
                         </div>
                     </div>
-
                 </div>
                 <div *ngFor="let items of paymentNotDone" style="border: 1px solid grey;padding: 10px;margin: 0px;border-radius: 5px;margin-bottom: 10px;">
                     <p>Request to {{items.mentorName}} for {{items.skillname}} 
@@ -25,7 +24,7 @@
         </div>
     </div>
     <div class="col-md-3">
-        <div class="card bg-light " >
+        <div class="card bg-light ">
             <div class="card-header bg-primary"  style="color:white;">Pending Request</div>
             <div class="card-body">
                 <h5 class="card-title"></h5>
@@ -58,10 +57,19 @@
         <div class="card bg-light " >
             <div class="card-header" >Ongoing Training</div>
             <div class="card-body">
-                <div *ngFor="let items of currentTraining">
+                <div *ngFor="let items of paymentDone">
                     <p>Your training for {{items.skillname}} by {{items.mentorName}} 
                     has started.</p>
                     <br>
+                    <div *ngIf="items.progress > 0" >
+                        <div *ngIf="100 > items.progress " style="border: 2px solid blue;padding: 10px;margin: 0px;border-radius: 5px;margin-bottom: 10px;">
+                            <p>Your training on {{items.skillname}} by {{items.mentorName}} is started.</p>
+                        </div>
+                        <div *ngIf="items.progress == 100" style="border: 2px solid green;padding: 10px;margin: 0px;border-radius: 5px;margin-bottom: 10px;">
+                            <p>Your training on {{items.skillname}} by {{items.mentorName}} is completed.</p>
+                        </div>
+                    </div>
+                    
                 </div>
                 
             </div>
