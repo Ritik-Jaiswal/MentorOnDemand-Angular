@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
+import { UserDtlService } from 'src/app/Services/user-dtl.service';
 @Component({
   selector: 'app-user-profile',
   templateUrl: './user-profile.component.html',
@@ -7,9 +7,53 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UserProfileComponent implements OnInit {
 
-  constructor() { }
+  userId: any;
+  userData: object;
+  email: string;
+  phoneNumber: number;
+  fname: string;
+  lname: string;
+  uname: string;
+  edit: boolean = false;
+
+  constructor(private service: UserDtlService) { }
 
   ngOnInit() {
+    this.userId = localStorage.getItem('user');
+    console.log(this.userId);
+    this.UserDataById();
+  }
+  UserDataById() {
+    this.service.getUserById(this.userId).subscribe(data => {
+      this.userData = data;
+      this.email = this.userData['email'];
+      this.fname = this.userData['firstName'];
+      this.lname = this.userData['lastName'];
+      this.phoneNumber = this.userData['contactNumber'];
+      this.uname = this.userData['userName'];
+      console.log(this.phoneNumber);
+    });
+  }
+  editbutton() {
+    this.edit = true;
+  }
+  savebutton() {
+    var result = {
+      firstName: this.fname,
+      lastName: this.lname,
+      email: this.userData['email'],
+      contactNumber: this.phoneNumber,
+      password: this.userData['password'],
+      userName: this.userData['userName'],
+      role: this.userData['role'],
+      active: this.userData['active'],
+    }
+    console.log(result);
+    this.service.userDataEdit(this.userId, result).subscribe(data => {
+      console.log('success');
+    });
+    this.edit = false;
+
   }
 
 }

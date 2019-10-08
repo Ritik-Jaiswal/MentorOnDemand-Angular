@@ -61,6 +61,9 @@ export class UserDtlService {
   userEdit(id,result){
     return this.http.put(this.rootURL+"/EditUserData/"+id,result)
   }
+  userDataEdit(id,result){
+    return this.http.put(this.rootURL+"/EditUserData1/"+id,result)
+  }
   trainerList(name){
     return this.http.get(this.rootURL+"/searchTrainer/"+name)
   }

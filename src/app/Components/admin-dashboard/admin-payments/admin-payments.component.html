@@ -13,6 +13,7 @@
                 <table class="table table-striped table-bordered" style="color:black;">
                     <thead>
                         <tr>
+                            <th>Id</th>
                             <th>Training Id</th>
                             <th>Course</th>
                             <th>Mentor Name</th>
@@ -24,31 +25,36 @@
                         <tr>
                     </thead>
                     <tbody>
-                        <tr *ngFor="let items of PaymentData">
-                            <td>{{items.trainingId}}</td>
+                        <tr *ngFor="let items of PaymentData ;let i=index">
+                            <td>{{i+1}}</td>
                             <td>{{items.skillName}}</td>
                             <td>{{items.mentorName}}</td>
+                            <td>{{items.trainingId}}</td>
                             <td>{{items.mentorId}}</td>
                             <td>{{items.amount}}</td>
                             <td>
-                                <div *ngIf="edit" style="width: 100%;">
-                                    <form [formGroup]="Commission" autocomplete="off" (submit)="onSubmit(Commission)">
-                                        <input class="form-control" formControlName="com">
-                                    </form>
-                                </div>
-                                <div *ngIf="!edit">
-                                    {{items.commision}}
-                                </div>
+                                <input type="text" [(ngModel)]="commision" [disabled]="!items.isEditable" name="commision" />
                             </td>
                             <td>
-                                <div *ngIf="!edit">
-                                    <button class=" btn  btn-block " (click)="editOption(items.id)">Edit</button>
-                                </div>
-                                <div *ngIf="edit">
-                                    <button class=" btn  btn-block " (click)="commissionEdit(items.id)">Save</button>
-                                </div>
+                                <button class=" btn  btn-block " (click)="items.isEditable=!items.isEditable"
+                                    *ngIf="!items.isEditable">Edit</button>
+                                <button class=" btn  btn-block " *ngIf="items.isEditable"
+                                    (click)="items.isEditable=!items.isEditable;commissionEdit(items.id);">Save</button>
                             </td>
                         </tr>
+                        <!-- <tr *ngFor="let employee of employees">
+                            <td>
+                                <input type="text" [(ngModel)]="items.name" [disabled]="!employee.isEditable" />
+                                <label> {{employee.value}} </label>
+                            </td>
+                            <td>
+                                <button class=" btn  btn-block " (click)="employee.isEditable=!employee.isEditable"
+                                    *ngIf="!employee.isEditable">Edit</button>
+                                <button class=" btn  btn-block " *ngIf="employee.isEditable"
+                                    (click)="employee.isEditable=!employee.isEditable">Save</button>
+
+                            </td>
+                        </tr> -->
                     </tbody>
                 </table>
             </div>
