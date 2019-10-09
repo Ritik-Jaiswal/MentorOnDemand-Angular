@@ -14,8 +14,9 @@ export class UserCurrentTrainingsComponent implements OnInit {
   userTrainingData: object;
   currentTraining: object;
   edit: boolean = false;
-  Progress: FormGroup;
   TrainingData: object;
+  model:any;
+
   constructor(private fb: FormBuilder, private service: UserDtlService, private router: Router) { }
 
 
@@ -24,9 +25,7 @@ export class UserCurrentTrainingsComponent implements OnInit {
     this.getTrainingByUserId();
     this.edit = false;
 
-    this.Progress = this.fb.group({
-      progress1: ['', Validators.required]
-    });
+    
   }
 
   getTrainingByUserId() {
@@ -36,36 +35,39 @@ export class UserCurrentTrainingsComponent implements OnInit {
       console.log(this.currentTraining);
     });
   }
-  editOption(id) {
-    this.edit = true;
-    console.log(id);
-  }
-  progressTraining(id) {
-    this.edit = false;
-    console.log(id);
-    this.service.trainingById(id).subscribe(data => {
-      this.TrainingData = data;
-      console.log(this.TrainingData);
 
-      let progress2=this.Progress.value.progress1;
+  editOption(id) {
+    this.service.trainingById(id).subscribe(data=>
+      {
+        this.model = data;
+      })
+
+  }
+
+
+  updateProgress(id) {
+    console.log(id);
+
+
+      let progress2=this.model.progress;
       if(progress2<100)
       {
         var result1 = {
           rejectNotify: false,
-          timeSlot: this.TrainingData["timeSlot"],
-          startDate: this.TrainingData['startDate'],
-          endDate: this.TrainingData['endDate'],
-          userName: this.TrainingData['userName'],
-          fees: this.TrainingData['fees'],
-          userId: this.TrainingData['userId'],
-          mentorId: this.TrainingData['mentorId'],
-          mentorName: this.TrainingData['mentorName'],
-          skillId: this.TrainingData['skillId'],
-          skillname: this.TrainingData['skillname'],
-          requested:this.TrainingData['requested'],
-          status:this.TrainingData['status'],
-          progress:this.Progress.value.progress1,
-          paymentStatus:this.TrainingData['paymentStatus']
+          timeSlot: this.model["timeSlot"],
+          startDate: this.model['startDate'],
+          endDate: this.model['endDate'],
+          userName: this.model['userName'],
+          fees: this.model['fees'],
+          userId: this.model['userId'],
+          mentorId: this.model['mentorId'],
+          mentorName: this.model['mentorName'],
+          skillId: this.model['skillId'],
+          skillname: this.model['skillname'],
+          requested:this.model['requested'],
+          status:this.model['status'],
+          progress:this.model.progress,
+          paymentStatus:this.model['paymentStatus']
         }
         console.log(result1);
         this.service.trainingEdit(id,result1).subscribe(res => {
@@ -73,34 +75,33 @@ export class UserCurrentTrainingsComponent implements OnInit {
           console.log(res);
           this.getTrainingByUserId();
         });
+      
       }
       else{
         var result2 = {
           rejectNotify: false,
-          timeSlot: this.TrainingData["timeSlot"],
-          startDate: this.TrainingData['startDate'],
-          endDate: this.TrainingData['endDate'],
-          userName: this.TrainingData['userName'],
-          fees: this.TrainingData['fees'],
-          userId: this.TrainingData['userId'],
-          mentorId: this.TrainingData['mentorId'],
-          mentorName: this.TrainingData['mentorName'],
-          skillId: this.TrainingData['skillId'],
-          skillname: this.TrainingData['skillname'],
-          requested:this.TrainingData['requested'],
+          timeSlot: this.model["timeSlot"],
+          startDate: this.model['startDate'],
+          endDate: this.model['endDate'],
+          userName: this.model['userName'],
+          fees: this.model['fees'],
+          userId: this.model['userId'],
+          mentorId: this.model['mentorId'],
+          mentorName: this.model['mentorName'],
+          skillId: this.model['skillId'],
+          skillname: this.model['skillname'],
+          requested:this.model['requested'],
           status:"completed",
-          progress:this.Progress.value.progress1,
-          paymentStatus:this.TrainingData['paymentStatus']
+          progress:this.model.progress,
+          paymentStatus:this.model['paymentStatus']
         }
-        console.log(result2);
+        console.log(result1);
         this.service.trainingEdit(id,result2).subscribe(res => {
           console.log('success');
           console.log(res);
           this.getTrainingByUserId();
         });
       }
-      
-    });
     
     
   }

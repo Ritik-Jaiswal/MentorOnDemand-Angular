@@ -6,7 +6,7 @@
                 <h5 class="card-title"></h5>
                 <div *ngFor="let items of acceptedTraining">
                     <p>Request from {{items.userName}} for {{items.skillname}} 
-                    will start from {{items.startDate}}.</p>
+                    will start from {{items.startDate  | date : 'dd/MM/yyyy'}}.</p>
                     <br>
                 </div>
             </div>   

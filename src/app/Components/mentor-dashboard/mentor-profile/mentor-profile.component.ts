@@ -56,7 +56,7 @@ export class MentorProfileComponent implements OnInit {
       active: this.mentorData['active'],
       linkdinUrl:this.linkdinUrl1,
       training:this.mentorData['training'],
-      yearOfExperience:this.mentorData['yearOfExperience']
+      yearOfExperience:+this.year1
     }
     console.log(result);
     this.service.userDataEdit(this.mentorId, result).subscribe(data => {

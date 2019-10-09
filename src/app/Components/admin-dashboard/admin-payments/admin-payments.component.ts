@@ -15,6 +15,7 @@ export class AdminPaymentsComponent implements OnInit {
   edit: boolean = false;
   commission:number;
   employees:object;
+  model:any;
   constructor(private fb: FormBuilder, private service: UserDtlService) {
     
    }
@@ -32,36 +33,35 @@ export class AdminPaymentsComponent implements OnInit {
       console.log(this.PaymentData);
     });
   }
-  editOption(id) {
-    this.edit = true;
+  commision(id) {
+    this.service.paymentDetailsById(id).subscribe(data=>
+      {
+        this.model = data[0];
+        console.log(this.model);
+      })
   }
 
   commissionEdit(id) {
 
     console.log(id);
-    console.log(this.commission);
-    // this.service.paymentDetailsById(id).subscribe(data => {
-    //   this.PaymentDataById = data;
-    //   console.log(this.PaymentDataById);
+    
+      var result1 = {
+        amount:this.model['amount'],
+        mentorId:this.model['mentorId'],
+        mentorName:this.model['mentorName'],
+        trainingId:this.model['trainingId'],
+        skillName:this.model['skillName'],
+        totalAmountToMentor:this.model['amount']-this.model.commision,
+        commision:this.model.commision
+      }
+      console.log(result1);
+      
+      this.service.paymentEdit(id, result1).subscribe(res => {
+        console.log('success');
+        //console.log(res);
+        this.getPayment();
+      });
 
 
-    //   var result1 = {
-    //     amount:this.PaymentDataById['amount'],
-    //     mentorId:this.PaymentDataById['mentorId'],
-    //     mentorName:this.PaymentDataById['mentorName'],
-    //     trainingId:this.PaymentDataById['trainingId'],
-    //     skillName:this.PaymentDataById['skillName'],
-    //     totalAmountToMentor:this.PaymentDataById['amount']-this.commission,
-    //     commision:this.commission
-    //   }
-    //   console.log(result1);
-    //   this.service.paymentEdit(id, result1).subscribe(res => {
-    //     console.log('success');
-    //     //console.log(res);
-    //     this.getPayment();
-    //   });
-
-
-    // });
   }
 }

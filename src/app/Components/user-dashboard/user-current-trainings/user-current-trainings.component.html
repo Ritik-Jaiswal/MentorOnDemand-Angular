@@ -18,8 +18,8 @@
           <td>{{items.mentorName}}</td>
           <td>{{items.endDate | date : 'dd/MM/yyyy'}}</td>
           <td>
-            <div *ngIf="!edit">{{items.progress}}%</div>
-            <div *ngIf="edit">
+            <div >{{items.progress}}%</div>
+            <!-- <div >
               <form [formGroup]="Progress">
                 <select formControlName="progress1" class="rounded dropdown form-control " >
                   <option  value="" disabled>Select Progress</option>
@@ -30,18 +30,39 @@
                   <option value="100">100%</option>
                 </select>
               </form>
-            </div>
+            </div> -->
           </td>
           <td>
-            <div *ngIf="!edit">
-                <button class=" btn  btn-block " (click)="editOption(items.id)">Edit</button>
-            </div>
-            <div *ngIf="edit">
-                <button class=" btn  btn-block " (click)="progressTraining(items.id)">Save</button>
+            <div>
+              <button class="btn  btn-block" type="button" class="btn btn-sm btn-success" data-toggle="modal" data-target="#myModal" (click)="editOption(items.id)">Update Progress</button>
             </div>
           </td>
         </tr>
       </tbody>
     </table>
+  </div>
+  <div id="myModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content" *ngIf="model">
+          <form>
+          <div class="modal-header">
+            <h4 class="modal-title">Update Progress</h4>
+          </div>
+          <div class="modal-body" style="text-align: left">
+            <select [(ngModel)]="model.progress" name="progress" class="form-control rounded">
+              <option value="0">0%</option>
+              <option value="25">25%</option>
+              <option value="50">50%</option>
+              <option value="75">75%</option>
+              <option value="100">100%</option>
+            </select>
+          </div>
+          <div class="modal-footer">
+            <button class="btn d-inline" (click)="updateProgress(model.id)">Save</button>
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          </div>
+        </form>
+      </div>
+    </div>
   </div>
 

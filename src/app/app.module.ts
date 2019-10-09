@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormBuilder,  Validators,FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FormGroup } from '@angular/forms';
+import { ToastrModule } from 'ngx-toastr';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { UserDashboardComponent } from './Components/user-dashboard/user-dashboard.component';
@@ -62,6 +63,8 @@ import { MentorNotificationComponent } from './Components/mentor-dashboard/mento
     ReactiveFormsModule,
     HttpClientModule,
     BrowserAnimationsModule,
+    BrowserAnimationsModule, 
+    ToastrModule.forRoot() 
   ],
   providers: [UserDtlService,AuthGuard],
   bootstrap: [AppComponent]

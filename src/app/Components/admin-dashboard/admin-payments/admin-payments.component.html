@@ -32,59 +32,33 @@
                             <td>{{items.trainingId}}</td>
                             <td>{{items.mentorId}}</td>
                             <td>{{items.amount}}</td>
+                            <td>{{items.commision}}</td>
                             <td>
-                                <input type="text" [(ngModel)]="commision" [disabled]="!items.isEditable" name="commision" />
-                            </td>
-                            <td>
-                                <button class=" btn  btn-block " (click)="items.isEditable=!items.isEditable"
-                                    *ngIf="!items.isEditable">Edit</button>
-                                <button class=" btn  btn-block " *ngIf="items.isEditable"
-                                    (click)="items.isEditable=!items.isEditable;commissionEdit(items.id);">Save</button>
+                                <button type="button" class="btn btn-sm btn-success" data-toggle="modal" data-target="#myModal" (click)="commision(items.id)">Update Commission</button>
                             </td>
                         </tr>
-                        <!-- <tr *ngFor="let employee of employees">
-                            <td>
-                                <input type="text" [(ngModel)]="items.name" [disabled]="!employee.isEditable" />
-                                <label> {{employee.value}} </label>
-                            </td>
-                            <td>
-                                <button class=" btn  btn-block " (click)="employee.isEditable=!employee.isEditable"
-                                    *ngIf="!employee.isEditable">Edit</button>
-                                <button class=" btn  btn-block " *ngIf="employee.isEditable"
-                                    (click)="employee.isEditable=!employee.isEditable">Save</button>
-
-                            </td>
-                        </tr> -->
                     </tbody>
                 </table>
             </div>
         </div>
     </div>
 </div>
-<!-- <div id="id01" class="modal">
-        <div class="container-fluid modal-content animate">
-            <div class="row">
-                <div class="col-md-12">
-                    <h3 style="padding: 20px;text-align: center;padding-bottom: 50px;">Commission</h3>
-                    <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
-                    <form [formGroup]="Commission" autocomplete="off" (submit)="onSubmit(Commission)">
-                        <div class="form-group required">
-                            <label>Your Commission</label>
-                            <input class="form-control" formControlName="Commission">
-                            <small class="text-danger" *ngIf="Commission.get('Commission').touched && Commission.get('Commission').errors?.required">This field is mandatory</small>
-                        </div>
-                        <div class="form-group required">
-                            <label>Mentor Payment</label>
-                            <input class="form-control" formControlName="MentorPayment">
-                            <small class="text-danger" *ngIf="Commission.get('MentorPayment').touched && Commission.get('MentorPayment').errors?.required">This field is mandatory</small>
-                        </div>
-                        <div class="form-row">
-                            <div class="form-group col-md-12 ">
-                                <button class="btn btn-lg btn-block login" [disabled]="!Commission.valid">Save</button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div> -->
+
+<div id="myModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content" *ngIf="model">
+          <form>
+          <div class="modal-header">
+            <h4 class="modal-title">Update Progress</h4>
+          </div>
+          <div class="modal-body" style="text-align: left">
+            <input type="text" [(ngModel)]="model.commision" name="commision" class="form-control rounded">
+          </div>
+          <div class="modal-footer">
+            <button class="btn d-inline" (click)="commissionEdit(model.id)">Save</button>
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>

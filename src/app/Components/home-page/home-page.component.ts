@@ -3,7 +3,7 @@ import { FormBuilder,  Validators } from '@angular/forms';
 import { FormGroup,ReactiveFormsModule } from '@angular/forms';
 import {UserDtlService}from '../../Services/user-dtl.service';
 import { Router } from '@angular/router';
-
+import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-home-page',
   templateUrl: './home-page.component.html',
@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
 })
 export class HomePageComponent implements OnInit {
 
-  constructor(private fb:FormBuilder,private service:UserDtlService,private router: Router) { }
+  constructor(private fb:FormBuilder,private service:UserDtlService,private router: Router,private toastr: ToastrService) { }
 
   UserLogin:FormGroup;
   MentorLogin:FormGroup;
@@ -148,7 +148,8 @@ export class HomePageComponent implements OnInit {
     }
 
     this.service.signin(result1).subscribe(res => {
-      console.log(res);
+      this.toastr.success('Sign Up successfull');
+      //console.log(res);
     })
     
     this.resetForm();
@@ -177,7 +178,12 @@ export class HomePageComponent implements OnInit {
       active:true
     }
     this.service.signin(result2).subscribe(res => {
-      console.log('successfully inserted')
+      //console.log('successfully inserted');
+      this.service.isUserLoggedIn=true;
+      localStorage.setItem('mentor',this.res.id);
+      this.toastr.success('Sign Up successfull');
+          //console.log(localStorage.getItem('user'));
+      this.router.navigate(['mentor']);
     })
     //this.resetForm();
   }
@@ -202,14 +208,18 @@ export class HomePageComponent implements OnInit {
       this.res=data;
       if(this.res!=undefined)
       {
-        console.log(this.res||JSON);
+        //console.log(this.res||JSON);
         if(this.res.role==2 && this.res.active==true)
         {
             localStorage.setItem('mentor',this.res.id);
-            console.log("Logged Successfully")
+            this.toastr.success('Log in successfull');
+            //console.log("Logged Successfully")
             this.id=this.res.id;
-            console.log(this.id);
+            //console.log(this.id);
             this.router.navigate(['mentor']);
+        }
+        else{
+          this.toastr.error("Invalid Email or Password");
         }
       }
       });
@@ -238,15 +248,15 @@ export class HomePageComponent implements OnInit {
         //console.log(this.res||JSON);
         if(this.res.role==1 && this.res.active==true)
         {
-          console.log("Logged Successfully")
+          this.toastr.success('Logged in successfully');
           this.service.isUserLoggedIn=true;
           localStorage.setItem('user',this.res.id);
-          console.log(localStorage.getItem('user'));
+          //console.log(localStorage.getItem('user'));
           this.router.navigate(['user']);
         }
       }
       else{
-        console.log("Invalid Email or Password")
+        this.toastr.error("Invalid Email or Password");
       }
     });  
     }
@@ -271,12 +281,16 @@ export class HomePageComponent implements OnInit {
       this.res=data;
       if(this.res!=undefined)
       {
-        console.log(this.res||JSON);
+        //console.log(this.res||JSON);
         if(this.res.role==3 && this.res.active==true)
         {
-            alert(JSON.stringify(this.res));
-            console.log("Logged Successfully")
+            //alert(JSON.stringify(this.res));
+            this.toastr.success('Log In successfull');
+            //console.log("Logged Successfully")
             this.router.navigate(['admin']);
+        }
+        else{
+          this.toastr.error('Invalid Email or Password');
         }
       }
         });

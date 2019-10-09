@@ -55,6 +55,9 @@ export class UserDtlService {
   paymentDetailsById(id){
     return this.http.get(this.rootURL+"/paymentById/"+id)
   }
+  paymentDetailsByMentorId(id){
+    return this.http.get(this.rootURL+"/paymentByMentor/"+id)
+  }
   paymentEdit(id,result){
     return this.http.put(this.rootURL+"/paymentEdit/"+id,result)
   }
