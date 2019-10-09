@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UserDtlService } from '../../../Services/user-dtl.service';
 import * as _ from "underscore";
+import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-mentor-notification',
   templateUrl: './mentor-notification.component.html',
@@ -15,7 +16,7 @@ export class MentorNotificationComponent implements OnInit {
   rejectedTraining: object;
   TrainingData: object;
   TrainingDataById: any;
-  constructor(private service: UserDtlService) { }
+  constructor(private service: UserDtlService,private toastr: ToastrService) { }
 
   ngOnInit() {
     this.mentorId = localStorage.getItem('mentor');
@@ -41,7 +42,7 @@ export class MentorNotificationComponent implements OnInit {
   onAccept(id) {
     this.service.trainingById(id).subscribe(data => {
       this.TrainingDataById = data;
-      console.log(this.TrainingDataById.id);
+      //console.log(this.TrainingDataById.id);
 
       var result = {
         rejectNotify: false,
@@ -59,8 +60,9 @@ export class MentorNotificationComponent implements OnInit {
       }
       //console.log(result);
       this.service.trainingEdit(id,result).subscribe(res => {
-        console.log('success');
-        console.log(res);
+        //console.log('success');
+        this.toastr.success('Proposal Accepted');
+        ///console.log(res);
         this.getTrainingByMentorId();
       });
       
@@ -74,7 +76,7 @@ export class MentorNotificationComponent implements OnInit {
 
     this.service.trainingById(id).subscribe(data => {
       this.TrainingDataById = data;
-      console.log(this.TrainingDataById.id);
+      //console.log(this.TrainingDataById.id);
 
       var result = {
         rejectNotify: true,
@@ -92,8 +94,9 @@ export class MentorNotificationComponent implements OnInit {
       }
       //console.log(result);
       this.service.trainingEdit(id,result).subscribe(res => {
-        console.log('success');
-        console.log(res);
+        //console.log('success');
+        this.toastr.error('Proposal Denied');
+        //console.log(res);
         this.getTrainingByMentorId();
       });
       

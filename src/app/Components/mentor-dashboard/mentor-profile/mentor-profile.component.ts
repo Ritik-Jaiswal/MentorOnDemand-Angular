@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UserDtlService } from 'src/app/Services/user-dtl.service';
+import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-mentor-profile',
   templateUrl: './mentor-profile.component.html',
@@ -18,11 +19,11 @@ export class MentorProfileComponent implements OnInit {
   year1: number;
   training:string;
   edit: boolean = false;
-  constructor(private service: UserDtlService) { }
+  constructor(private service: UserDtlService,private toastr: ToastrService) { }
 
   ngOnInit() {
     this.mentorId = localStorage.getItem('mentor');
-    console.log(this.mentorId);
+    //console.log(this.mentorId);
     this.MentorDataById();
   }
   MentorDataById() {
@@ -60,7 +61,9 @@ export class MentorProfileComponent implements OnInit {
     }
     console.log(result);
     this.service.userDataEdit(this.mentorId, result).subscribe(data => {
-      console.log('success');
+      //console.log('success');
+      this.toastr.success('Profile Updated Successfully');
+      
     });
     this.edit = false;
 

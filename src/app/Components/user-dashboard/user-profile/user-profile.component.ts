@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UserDtlService } from 'src/app/Services/user-dtl.service';
+import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-user-profile',
   templateUrl: './user-profile.component.html',
@@ -16,11 +17,11 @@ export class UserProfileComponent implements OnInit {
   uname: string;
   edit: boolean = false;
 
-  constructor(private service: UserDtlService) { }
+  constructor(private service: UserDtlService,private toastr: ToastrService) { }
 
   ngOnInit() {
     this.userId = localStorage.getItem('user');
-    console.log(this.userId);
+    //console.log(this.userId);
     this.UserDataById();
   }
   UserDataById() {
@@ -31,7 +32,7 @@ export class UserProfileComponent implements OnInit {
       this.lname = this.userData['lastName'];
       this.phoneNumber = this.userData['contactNumber'];
       this.uname = this.userData['userName'];
-      console.log(this.phoneNumber);
+      //console.log(this.phoneNumber);
     });
   }
   editbutton() {
@@ -48,9 +49,10 @@ export class UserProfileComponent implements OnInit {
       role: this.userData['role'],
       active: this.userData['active'],
     }
-    console.log(result);
+    //console.log(result);
     this.service.userDataEdit(this.userId, result).subscribe(data => {
-      console.log('success');
+      //console.log('success');
+      this.toastr.success('Profile Successfully')
     });
     this.edit = false;
 

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { UserDtlService } from 'src/app/Services/user-dtl.service';
 import * as _ from "underscore";
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-admin-payments',
   templateUrl: './admin-payments.component.html',
@@ -16,7 +17,7 @@ export class AdminPaymentsComponent implements OnInit {
   commission:number;
   employees:object;
   model:any;
-  constructor(private fb: FormBuilder, private service: UserDtlService) {
+  constructor(private fb: FormBuilder, private service: UserDtlService,private toastr: ToastrService) {
     
    }
 
@@ -58,6 +59,7 @@ export class AdminPaymentsComponent implements OnInit {
       
       this.service.paymentEdit(id, result1).subscribe(res => {
         console.log('success');
+        this.toastr.success('Successfully Updated');
         //console.log(res);
         this.getPayment();
       });

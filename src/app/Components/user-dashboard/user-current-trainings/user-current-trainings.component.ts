@@ -3,6 +3,7 @@ import { UserDtlService } from 'src/app/Services/user-dtl.service';
 import { Router } from '@angular/router';
 import * as _ from "underscore";
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
+import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-user-current-trainings',
   templateUrl: './user-current-trainings.component.html',
@@ -17,7 +18,7 @@ export class UserCurrentTrainingsComponent implements OnInit {
   TrainingData: object;
   model:any;
 
-  constructor(private fb: FormBuilder, private service: UserDtlService, private router: Router) { }
+  constructor(private fb: FormBuilder,private toastr: ToastrService, private service: UserDtlService, private router: Router) { }
 
 
   ngOnInit() {
@@ -32,7 +33,7 @@ export class UserCurrentTrainingsComponent implements OnInit {
     this.service.userTrainingList(this.userId).subscribe(data => {
       this.userTrainingData = data;
       this.currentTraining = _.where(this.userTrainingData, { status: "current" });
-      console.log(this.currentTraining);
+      //console.log(this.currentTraining);
     });
   }
 
@@ -46,7 +47,7 @@ export class UserCurrentTrainingsComponent implements OnInit {
 
 
   updateProgress(id) {
-    console.log(id);
+    //console.log(id);
 
 
       let progress2=this.model.progress;
@@ -71,8 +72,9 @@ export class UserCurrentTrainingsComponent implements OnInit {
         }
         console.log(result1);
         this.service.trainingEdit(id,result1).subscribe(res => {
-          console.log('success');
-          console.log(res);
+          //console.log('success');
+          this.toastr.success('Progress Updated Successfully');
+          //console.log(res);
           this.getTrainingByUserId();
         });
       
@@ -97,8 +99,9 @@ export class UserCurrentTrainingsComponent implements OnInit {
         }
         console.log(result1);
         this.service.trainingEdit(id,result2).subscribe(res => {
-          console.log('success');
-          console.log(res);
+          //console.log('success');
+          this.toastr.success('Training Completed')
+          //console.log(res);
           this.getTrainingByUserId();
         });
       }

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UserDtlService } from 'src/app/Services/user-dtl.service';
 import { Router, ActivatedRoute } from '@angular/router';
-
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-propose-training',
@@ -32,7 +32,7 @@ export class ProposeTrainingComponent implements OnInit {
   request:Boolean;
   requestSent:any;
 
-  constructor(private service:UserDtlService,private router: Router,private route:ActivatedRoute) { 
+  constructor(private service:UserDtlService,private toastr: ToastrService,private router: Router,private route:ActivatedRoute) { 
   }
 
   ngOnInit() {
@@ -54,19 +54,19 @@ export class ProposeTrainingComponent implements OnInit {
   getSkillByName(){
     this.service.refreshList1(this.trainerTechnology).subscribe(data=>{
       this.skillData=data[0];
-      console.log(this.skillData);
+      //console.log(this.skillData);
     });
   }
   getById() {
     this.service.getUserById(this.paramId).subscribe(data => {
       this.trainerData = data;
-      console.log(this.trainerData);
+      //console.log(this.trainerData);
     });
   }
   getUserById() {
     this.service.getUserById(this.userId).subscribe(data => {
       this.userData = data;
-      console.log(this.userData);
+      //console.log(this.userData);
     });
   }
 
@@ -87,8 +87,9 @@ export class ProposeTrainingComponent implements OnInit {
     }
     console.log(result);
     this.service.addtraining(result).subscribe(res => {
-      console.log(res);
-      console.log('request sent successfully');
+      //console.log(res);
+      this.toastr.success('Request sent successfully')
+      //console.log('request sent successfully');
       this.router.navigate(['/user/notification'])
     })
 

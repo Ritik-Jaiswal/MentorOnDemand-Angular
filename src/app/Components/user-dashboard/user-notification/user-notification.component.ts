@@ -3,6 +3,7 @@ import { UserDtlService } from '../../../Services/user-dtl.service';
 import * as _ from "underscore";
 import { Router } from '@angular/router';
 import * as moment from 'moment';
+import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-user-notification',
   templateUrl: './user-notification.component.html',
@@ -26,7 +27,7 @@ export class UserNotificationComponent implements OnInit {
   startdate1:Date;
   enddate1:Date;
 
-  constructor(private service: UserDtlService, private router: Router) { }
+  constructor(private service: UserDtlService,private toastr: ToastrService, private router: Router) { }
 
   ngOnInit() {
     this.userId = localStorage.getItem('user');
@@ -94,12 +95,12 @@ export class UserNotificationComponent implements OnInit {
       this.enddate1 = this.dateCheckData['endDate'];
 
       let startdate=moment(this.startdate1).format("DD-MM-YYYY");
-      console.log(startdate);
+      //console.log(startdate);
       let enddate=moment(this.enddate1).format("DD-MM-YYYY");
-      console.log(enddate);
+      //console.log(enddate);
 
       let now = moment().format('DD-MM-YYYY');
-      console.log(now);
+      //console.log(now);
 
       var result = {
         rejectNotify: false,
@@ -118,26 +119,29 @@ export class UserNotificationComponent implements OnInit {
         progress:0,
         paymentStatus:this.dateCheckData['paymentStatus']
       }
-      console.log(result);
+      //console.log(result);
       
 
       if(now > enddate)
       {
-        alert('date has expired');
+        //alert('date has expired');
+        this.toastr.success('Training date has expired');
       }
       else
       {
         if(now >= startdate)
         {
           this.service.trainingEdit(id,result).subscribe(res => {
-            console.log('Started Successfully');
+            //console.log('Started Successfully');
+            this.toastr.success('Training Started Successfully');
             this.getTrainingByUserId();
             this.router.navigate(['/user/current-trainings']);
           });
         }
         else
         {
-          alert('Wait till the start date');
+          //alert('Wait till the start date');
+          this.toastr.success('Wait till the start date');
         }
       }
       

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UserDtlService } from 'src/app/Services/user-dtl.service';
 import { Router, ActivatedRoute } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-user-payment',
   templateUrl: './user-payment.component.html',
@@ -10,7 +11,7 @@ export class UserPaymentComponent implements OnInit {
 
   paramId;
   TrainingDetails;
-  constructor(private service:UserDtlService,private router: Router,private route:ActivatedRoute) { 
+  constructor(private service:UserDtlService,private toastr: ToastrService,private router: Router,private route:ActivatedRoute) { 
     
   }
 
@@ -22,14 +23,14 @@ export class UserPaymentComponent implements OnInit {
   getParamData() {
     this.route.queryParams.subscribe(params => {
       this.paramId = params['trainingId'];
-      console.log(this.paramId);
+      //console.log(this.paramId);
     });
   }
 
   getByTrainingId() {
     this.service.trainingById(this.paramId).subscribe(data => {
       this.TrainingDetails = data;
-      console.log(this.TrainingDetails.name);
+      //console.log(this.TrainingDetails.name);
     });
   }
   onSubmit(){
@@ -40,10 +41,10 @@ export class UserPaymentComponent implements OnInit {
       trainingId:this.paramId,
       skillName:this.TrainingDetails['skillname']
     }
-    console.log(result);
+    //console.log(result);
 
     this.service.addPayment(result).subscribe(data => {
-      console.log('payment successfull');
+      console.log('Payment successfull');
     });
 
 
@@ -64,8 +65,9 @@ export class UserPaymentComponent implements OnInit {
     }
     console.log(result1);
     this.service.trainingEdit(this.paramId,result1).subscribe(res => {
-      console.log('success');
-      console.log(res);
+      //console.log('success');
+      this.toastr.success('Payment Successfull')
+      //console.log(res);
     });
     
   }
