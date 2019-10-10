@@ -9,7 +9,7 @@ import { FormBuilder } from '@angular/forms';
 })
 export class AdminBlockMentorComponent implements OnInit {
 
-  AllData:object;
+  AllData: object;
   MentorData: object;
   MentorDataById: object;
   constructor(private fb: FormBuilder, private service: UserDtlService) { }
@@ -20,7 +20,7 @@ export class AdminBlockMentorComponent implements OnInit {
   getMentor() {
     this.service.getAllData().subscribe(data => {
       this.AllData = data;
-      this.MentorData=_.where(this.AllData,{role:2});
+      this.MentorData = _.where(this.AllData, { role: 2 });
       console.log(this.MentorData);
 
     });
@@ -34,17 +34,17 @@ export class AdminBlockMentorComponent implements OnInit {
 
 
       var result = {
-        email:this.MentorDataById['email'],
-        userName:this.MentorDataById['userName'],
-        password:this.MentorDataById['password'],
-        firstName:this.MentorDataById['firstName'],
-        lastName:this.MentorDataById['lastName'],
-        contactNumber:this.MentorDataById['contactNumber'],
-        role:this.MentorDataById['role'],
-        linkdinUrl:this.MentorDataById['linkdinUrl'],
-        yearOfExperience:this.MentorDataById['yearOfExperience'],
-        active:false,
-        training:this.MentorDataById['training']
+        email: this.MentorDataById['email'],
+        userName: this.MentorDataById['userName'],
+        password: this.MentorDataById['password'],
+        firstName: this.MentorDataById['firstName'],
+        lastName: this.MentorDataById['lastName'],
+        contactNumber: this.MentorDataById['contactNumber'],
+        role: this.MentorDataById['role'],
+        linkdinUrl: this.MentorDataById['linkdinUrl'],
+        yearOfExperience: this.MentorDataById['yearOfExperience'],
+        active: false,
+        training: this.MentorDataById['training']
 
       }
       console.log(result);
@@ -65,17 +65,17 @@ export class AdminBlockMentorComponent implements OnInit {
 
 
       var result = {
-        email:this.MentorDataById['email'],
-        userName:this.MentorDataById['userName'],
-        password:this.MentorDataById['password'],
-        firstName:this.MentorDataById['firstName'],
-        lastName:this.MentorDataById['lastName'],
-        contactNumber:this.MentorDataById['contactNumber'],
-        role:this.MentorDataById['role'],
-        linkdinUrl:this.MentorDataById['linkdinUrl'],
-        yearOfExperience:this.MentorDataById['yearOfExperience'],
-        active:true,
-        training:this.MentorDataById['training']
+        email: this.MentorDataById['email'],
+        userName: this.MentorDataById['userName'],
+        password: this.MentorDataById['password'],
+        firstName: this.MentorDataById['firstName'],
+        lastName: this.MentorDataById['lastName'],
+        contactNumber: this.MentorDataById['contactNumber'],
+        role: this.MentorDataById['role'],
+        linkdinUrl: this.MentorDataById['linkdinUrl'],
+        yearOfExperience: this.MentorDataById['yearOfExperience'],
+        active: true,
+        training: this.MentorDataById['training']
 
       }
       console.log(result);

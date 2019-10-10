@@ -9,7 +9,7 @@ import { FormBuilder } from '@angular/forms';
 })
 export class AdminBlockUserComponent implements OnInit {
 
-  AllData:object;
+  AllData: object;
   UserData: object;
   UserDataById: object;
 
@@ -23,7 +23,7 @@ export class AdminBlockUserComponent implements OnInit {
   getUser() {
     this.service.getAllData().subscribe(data => {
       this.AllData = data;
-      this.UserData=_.where(this.AllData,{role:1});
+      this.UserData = _.where(this.AllData, { role: 1 });
       console.log(this.UserData);
 
     });
@@ -36,17 +36,17 @@ export class AdminBlockUserComponent implements OnInit {
 
 
       var result = {
-        email:this.UserDataById['email'],
-        userName:this.UserDataById['userName'],
-        password:this.UserDataById['password'],
-        firstName:this.UserDataById['firstName'],
-        lastName:this.UserDataById['lastName'],
-        contactNumber:this.UserDataById['contactNumber'],
-        role:this.UserDataById['role'],
-        linkdinUrl:this.UserDataById['linkdinUrl'],
-        yearOfExperience:this.UserDataById['yearOfExperience'],
-        active:false,
-        training:this.UserDataById['training']
+        email: this.UserDataById['email'],
+        userName: this.UserDataById['userName'],
+        password: this.UserDataById['password'],
+        firstName: this.UserDataById['firstName'],
+        lastName: this.UserDataById['lastName'],
+        contactNumber: this.UserDataById['contactNumber'],
+        role: this.UserDataById['role'],
+        linkdinUrl: this.UserDataById['linkdinUrl'],
+        yearOfExperience: this.UserDataById['yearOfExperience'],
+        active: false,
+        training: this.UserDataById['training']
 
       }
       console.log(result);
@@ -67,17 +67,17 @@ export class AdminBlockUserComponent implements OnInit {
 
 
       var result = {
-        email:this.UserDataById['email'],
-        userName:this.UserDataById['userName'],
-        password:this.UserDataById['password'],
-        firstName:this.UserDataById['firstName'],
-        lastName:this.UserDataById['lastName'],
-        contactNumber:this.UserDataById['contactNumber'],
-        role:this.UserDataById['role'],
-        linkdinUrl:this.UserDataById['linkdinUrl'],
-        yearOfExperience:this.UserDataById['yearOfExperience'],
-        active:true,
-        training:this.UserDataById['training']
+        email: this.UserDataById['email'],
+        userName: this.UserDataById['userName'],
+        password: this.UserDataById['password'],
+        firstName: this.UserDataById['firstName'],
+        lastName: this.UserDataById['lastName'],
+        contactNumber: this.UserDataById['contactNumber'],
+        role: this.UserDataById['role'],
+        linkdinUrl: this.UserDataById['linkdinUrl'],
+        yearOfExperience: this.UserDataById['yearOfExperience'],
+        active: true,
+        training: this.UserDataById['training']
 
       }
       console.log(result);

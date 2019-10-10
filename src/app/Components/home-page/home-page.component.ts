@@ -149,11 +149,17 @@ export class HomePageComponent implements OnInit {
     }
 
     this.service.signin(result1).subscribe(res => {
-      this.toastr.success('Sign Up successfull');
-      localStorage.setItem('user', res['id']);
-      console.log(localStorage.getItem('user'));
-      localStorage.setItem('role', this.res.role);
-      this.router.navigate(['user']);
+      if (res != undefined) {
+        this.toastr.success('Sign Up successfull');
+        localStorage.setItem('user', res['id']);
+        console.log(localStorage.getItem('user'));
+        localStorage.setItem('role', this.res.role);
+        this.router.navigate(['user']);
+      }
+      else {
+        this.toastr.success('Sign Up failed');
+      }
+
     });
 
     this.resetForm();
@@ -183,12 +189,18 @@ export class HomePageComponent implements OnInit {
     }
     this.service.signin(result2).subscribe(res => {
       //console.log('successfully inserted');
-      this.service.isUserLoggedIn = true;
-      localStorage.setItem('mentor', this.res.id);
-      localStorage.setItem('role', this.res.role);
-      this.toastr.success('Sign Up successfull');
-      //console.log(localStorage.getItem('user'));
-      this.router.navigate(['mentor']);
+      if (res != undefined) {
+        this.service.isUserLoggedIn = true;
+        localStorage.setItem('mentor', this.res.id);
+        localStorage.setItem('role', this.res.role);
+        this.toastr.success('Sign Up successfull');
+        //console.log(localStorage.getItem('user'));
+        this.router.navigate(['mentor']);
+      }
+      else {
+        this.toastr.error('Sign Up failed');
+      }
+
     })
     //this.resetForm();
   }

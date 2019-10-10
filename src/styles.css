@@ -25,6 +25,14 @@ html,body{
   z-index: 1;
   position: static;
 }
+.dashboard1{
+  width: 100%;
+  position: static;
+  height: 800px;
+  background-image: url(/assets/images/home8.jpg);
+  z-index: 1;
+
+}
 
 #home-content{
   position: absolute;

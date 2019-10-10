@@ -1,99 +1,105 @@
 import { Injectable } from '@angular/core';
-import{HttpClient} from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 @Injectable({
   providedIn: 'root'
 })
 export class UserDtlService {
 
-  isUserLoggedIn:boolean;
-  getId:number;
-  loggedIn:boolean = false;
-  readonly rootURL="https://localhost:44384/api";
+  isUserLoggedIn: boolean;
+  getId: number;
+  loggedIn: boolean = false;
+  readonly rootURL = "https://localhost:44384/api";
 
-  constructor(private http:HttpClient) {
-    this.isUserLoggedIn=false;
-   }
+  constructor(private http: HttpClient) {
+    this.isUserLoggedIn = false;
+  }
 
-   isLoggedIn() {
+  isLoggedIn() {
     if (localStorage.getItem("id")) {
       console.log(localStorage.getItem("id"));
       return (this.loggedIn = true);
     }
   }
 
-  getData(result){
-    return this.http.post(this.rootURL+"/GetAllData",result);
+  getData(result) {
+    return this.http.post(this.rootURL + "/GetAllData", result);
   }
-  getAllData(){
-    return this.http.get(this.rootURL+"/GetAllData");
-  }  
-  signin(result){
-    return this.http.post(this.rootURL+"/create",result);
-  } 
-  login(result1){
-    this.isUserLoggedIn=true;
-    return this.http.post(this.rootURL+"/login",result1);
+  getAllData() {
+    return this.http.get(this.rootURL + "/GetAllData");
   }
-  addtech(result){
-    return this.http.post(this.rootURL+"/addtech",result);
-  } 
-  addtraining(result){
-    return this.http.post(this.rootURL+"/addtraining",result);
-  } 
-  addPayment(result){
-    return this.http.post(this.rootURL+"/addPayment",result);
-  } 
-  refreshList(){
-    return this.http.get(this.rootURL+"/showTech")
+  signin(result) {
+    return this.http.post(this.rootURL + "/create", result);
+  }
+  login(result1) {
+    this.isUserLoggedIn = true;
+    return this.http.post(this.rootURL + "/login", result1);
+  }
+  addtech(result) {
+    return this.http.post(this.rootURL + "/addtech", result);
+  }
+  addtraining(result) {
+    return this.http.post(this.rootURL + "/addtraining", result);
+  }
+  addPayment(result) {
+    return this.http.post(this.rootURL + "/addPayment", result);
+  }
+  refreshList() {
+    return this.http.get(this.rootURL + "/showTech")
   }
 
-  getUserById(id){
-    return this.http.get(this.rootURL+"/Details/"+id)
+  getUserById(id) {
+    return this.http.get(this.rootURL + "/Details/" + id)
   }
-  
-  deleteSkills(id){
-    return this.http.delete(this.rootURL+"/deleteSkills/"+id)
+
+  deleteSkills(id) {
+    return this.http.delete(this.rootURL + "/deleteSkills/" + id)
   }
-  skillList(){
-    return this.http.get(this.rootURL+"/mentor")
+  skillList() {
+    return this.http.get(this.rootURL + "/mentor")
   }
-  paymentList(){
-    return this.http.get(this.rootURL+"/GetAllPayment")
+  paymentList() {
+    return this.http.get(this.rootURL + "/GetAllPayment")
   }
-  paymentDetailsById(id){
-    return this.http.get(this.rootURL+"/paymentById/"+id)
+  paymentDetailsById(id) {
+    return this.http.get(this.rootURL + "/paymentById/" + id)
   }
-  paymentDetailsByMentorId(id){
-    return this.http.get(this.rootURL+"/paymentByMentor/"+id)
+  paymentDetailsByMentorId(id) {
+    return this.http.get(this.rootURL + "/paymentByMentor/" + id)
   }
-  paymentEdit(id,result){
-    return this.http.put(this.rootURL+"/paymentEdit/"+id,result)
+  paymentEdit(id, result) {
+    return this.http.put(this.rootURL + "/paymentEdit/" + id, result)
   }
-  userEdit(id,result){
-    return this.http.put(this.rootURL+"/EditUserData/"+id,result)
+  skillEdit(id, result) {
+    return this.http.put(this.rootURL + "/skillEdit/" + id, result)
   }
-  userDataEdit(id,result){
-    return this.http.put(this.rootURL+"/EditUserData1/"+id,result)
+  skillById(id) {
+    return this.http.get(this.rootURL + "/skillById/" + id)
   }
-  trainerList(name){
-    return this.http.get(this.rootURL+"/searchTrainer/"+name)
+  userEdit(id, result) {
+    return this.http.put(this.rootURL + "/EditUserData/" + id, result)
   }
-  userTrainingList(id){
-    return this.http.get(this.rootURL+"/userTrainings/"+id)
+  userDataEdit(id, result) {
+    return this.http.put(this.rootURL + "/EditUserData1/" + id, result)
   }
-  mentorTrainingList(id){
-    return this.http.get(this.rootURL+"/mentorTrainings/"+id)
+  trainerList(name) {
+    return this.http.get(this.rootURL + "/searchTrainer/" + name)
   }
-  skilldetails(name){
-    return this.http.get(this.rootURL+"/skillByName/"+name)
+  userTrainingList(id) {
+    return this.http.get(this.rootURL + "/userTrainings/" + id)
   }
-  refreshList1(trainerTechnology){
-    return this.http.get(this.rootURL+"/skillByName/"+trainerTechnology)
+  mentorTrainingList(id) {
+    return this.http.get(this.rootURL + "/mentorTrainings/" + id)
   }
-  trainingEdit(id,result){
-    return this.http.put(this.rootURL+"/trainingEdit/"+id,result)
+  skilldetails(name) {
+    return this.http.get(this.rootURL + "/skillByName/" + name)
   }
-  trainingById(id){
-    return this.http.get(this.rootURL+"/trainingDetails/"+id)
+  refreshList1(trainerTechnology) {
+    return this.http.get(this.rootURL + "/skillByName/" + trainerTechnology)
+  }
+  trainingEdit(id, result) {
+    return this.http.put(this.rootURL + "/trainingEdit/" + id, result)
+  }
+  trainingById(id) {
+    return this.http.get(this.rootURL + "/trainingDetails/" + id)
   }
 }

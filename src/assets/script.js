@@ -86,6 +86,9 @@ function myFunction14() {
 function adminCommission(){
 	document.getElementById("id01").style.display = "block";
 }
+function  myFunctionno(){
+	document.getElementById("user-signup").style.display = "block";
+}
 var modal = document.getElementById('id01');
 window.onclick = function (event) {
 	if (event.target == modal) {

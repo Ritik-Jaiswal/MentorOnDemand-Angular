@@ -153,7 +153,7 @@
 					</div>
 					<div class="form-group required">
 						<label>Password</label>
-						<input class="form-control" formControlName="password">
+						<input class="form-control" type="password" formControlName="password">
 						<small class="text-danger"
 							*ngIf="UserLogin.get('password').touched && UserLogin.get('password').errors?.required">This
 							field is mandatory</small>
@@ -195,7 +195,7 @@
 					</div>
 					<div class="form-group required">
 						<label>Password</label>
-						<input class="form-control" formControlName="password">
+						<input class="form-control" type="password" formControlName="password">
 						<small class="text-danger"
 							*ngIf="MentorLogin.get('password').touched && MentorLogin.get('password').errors?.required">This
 							field is mandatory</small>
@@ -236,7 +236,7 @@
 					</div>
 					<div class="form-group required">
 						<label>Password</label>
-						<input class="form-control" formControlName="password">
+						<input class="form-control" type="password" formControlName="password">
 						<small class="text-danger"
 							*ngIf="AdminLogin.get('password').touched && AdminLogin.get('password').errors?.required">This
 							field is mandatory</small>
@@ -316,7 +316,7 @@
 					</div>
 					<div class="form-group required">
 						<label>Enter Password</label>
-						<input class="form-control" formControlName="password">
+						<input class="form-control" type="password" formControlName="password">
 						<small class="text-danger"
 							*ngIf="UserRegister.get('password').touched && UserRegister.get('password').errors?.required">This
 							field is mandatory</small>
@@ -326,7 +326,7 @@
 					</div>
 					<div class="form-group required">
 						<label>Confirm Password</label>
-						<input class="form-control" formControlName="confirmPassword">
+						<input class="form-control" type="password" formControlName="confirmPassword">
 						<small class="text-danger"
 							*ngIf="UserRegister.get('confirmPassword').touched && UserRegister.get('confirmPassword').errors?.required">This
 							field is mandatory</small>
@@ -434,7 +434,7 @@
 					</div>
 					<div class="form-group required">
 						<label>Enter Password</label>
-						<input type="password" class="form-control" formControlName="password">
+						<input type="password" class="form-control" type="password" formControlName="password">
 						<small class="text-danger"
 							*ngIf="MentorRegister.get('password').touched && MentorRegister.get('password').errors?.required">This
 							field is mandatory</small>
@@ -444,7 +444,7 @@
 					</div>
 					<div class="form-group required">
 						<label>Confirm Password</label>
-						<input type="password" class="form-control" formControlName="confirmPassword">
+						<input type="password" class="form-control" type="password" formControlName="confirmPassword">
 						<small class="text-danger"
 							*ngIf="MentorRegister.get('confirmPassword').touched && MentorRegister.get('confirmPassword').errors?.required">This
 							field is mandatory</small>

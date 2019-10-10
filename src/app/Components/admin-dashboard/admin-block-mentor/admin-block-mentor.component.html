@@ -32,7 +32,8 @@
                             <td>{{items.active}}</td>
                             <td>
                                 <div *ngIf="!items.active">
-                                    <button class=" btn  btn-block btn-primary" (click)="unblock(items.id)">Unblock</button>
+                                    <button class=" btn  btn-block btn-primary"
+                                        (click)="unblock(items.id)">Unblock</button>
                                 </div>
                                 <div *ngIf="items.active">
                                     <button class=" btn  btn-block btn-danger" (click)="block(items.id)">Block</button>

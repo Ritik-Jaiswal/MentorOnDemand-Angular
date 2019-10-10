@@ -12,7 +12,7 @@ export class MentorPaymentComponent implements OnInit {
   constructor(private fb: FormBuilder, private service: UserDtlService) { }
   PaymentData: object;
   PaymentDataById: object;
-  mentorId:any;
+  mentorId: any;
 
   ngOnInit() {
     this.mentorId = localStorage.getItem('mentor');

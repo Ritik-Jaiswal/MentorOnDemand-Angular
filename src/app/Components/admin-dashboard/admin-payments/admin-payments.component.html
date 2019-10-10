@@ -34,7 +34,8 @@
                             <td>{{items.amount}}</td>
                             <td>{{items.commision}}</td>
                             <td>
-                                <button type="button" class="btn btn-sm btn-success" data-toggle="modal" data-target="#myModal" (click)="commision(items.id)">Update Commission</button>
+                                <button type="button" class="btn btn-sm btn-success" data-toggle="modal"
+                                    data-target="#myModal" (click)="commision(items.id)">Update Commission</button>
                             </td>
                         </tr>
                     </tbody>
@@ -46,19 +47,19 @@
 
 <div id="myModal" class="modal fade" role="dialog">
     <div class="modal-dialog">
-      <div class="modal-content" *ngIf="model">
-          <form>
-          <div class="modal-header">
-            <h4 class="modal-title">Update Progress</h4>
-          </div>
-          <div class="modal-body" style="text-align: left">
-            <input type="text" [(ngModel)]="model.commision" name="commision" class="form-control rounded">
-          </div>
-          <div class="modal-footer">
-            <button class="btn d-inline" (click)="commissionEdit(model.id)">Save</button>
-            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-          </div>
-        </form>
-      </div>
+        <div class="modal-content" *ngIf="model">
+            <form>
+                <div class="modal-header">
+                    <h4 class="modal-title">Update Progress</h4>
+                </div>
+                <div class="modal-body" style="text-align: left">
+                    <input type="text" [(ngModel)]="model.commision" name="commision" class="form-control rounded">
+                </div>
+                <div class="modal-footer">
+                    <button class="btn d-inline" (click)="commissionEdit(model.id)">Save</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </form>
+        </div>
     </div>
-  </div>
+</div>

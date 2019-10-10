@@ -17,7 +17,7 @@ export class UserProfileComponent implements OnInit {
   uname: string;
   edit: boolean = false;
 
-  constructor(private service: UserDtlService,private toastr: ToastrService) { }
+  constructor(private service: UserDtlService, private toastr: ToastrService) { }
 
   ngOnInit() {
     this.userId = localStorage.getItem('user');

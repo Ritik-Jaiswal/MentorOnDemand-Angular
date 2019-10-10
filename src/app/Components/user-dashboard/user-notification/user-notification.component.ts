@@ -24,10 +24,10 @@ export class UserNotificationComponent implements OnInit {
   startTrainingTime: object;
   endTrainingTime: object;
   dateCheckData: object;
-  startdate1:Date;
-  enddate1:Date;
+  startdate1: Date;
+  enddate1: Date;
 
-  constructor(private service: UserDtlService,private toastr: ToastrService, private router: Router) { }
+  constructor(private service: UserDtlService, private toastr: ToastrService, private router: Router) { }
 
   ngOnInit() {
     this.userId = localStorage.getItem('user');
@@ -59,10 +59,10 @@ export class UserNotificationComponent implements OnInit {
       this.paymentDone = _.where(this.acceptedTraining, { paymentStatus: true });
 
       console.log(this.paymentDone);
-      
+
       this.paymentNotDone = _.where(this.acceptedTraining, { paymentStatus: null });
       console.log('date checking');
-      this.currentTraining = _.where(this.paymentDone, { progress : 0 });
+      this.currentTraining = _.where(this.paymentDone, { progress: 0 });
       console.log('date checking');
 
       //var date2=moment(date).format('DD-MM-YYYY');
@@ -91,12 +91,12 @@ export class UserNotificationComponent implements OnInit {
       this.dateCheckData = data;
       console.log(this.dateCheckData);
 
-      this.startdate1 =this.dateCheckData['startDate'];
+      this.startdate1 = this.dateCheckData['startDate'];
       this.enddate1 = this.dateCheckData['endDate'];
 
-      let startdate=moment(this.startdate1).format("DD-MM-YYYY");
+      let startdate = moment(this.startdate1).format("DD-MM-YYYY");
       //console.log(startdate);
-      let enddate=moment(this.enddate1).format("DD-MM-YYYY");
+      let enddate = moment(this.enddate1).format("DD-MM-YYYY");
       //console.log(enddate);
 
       let now = moment().format('DD-MM-YYYY');
@@ -114,39 +114,35 @@ export class UserNotificationComponent implements OnInit {
         mentorName: this.dateCheckData['mentorName'],
         skillId: this.dateCheckData['skillId'],
         skillname: this.dateCheckData['skillname'],
-        requested:this.dateCheckData['requested'],
-        status:"current",
-        progress:0,
-        paymentStatus:this.dateCheckData['paymentStatus']
+        requested: this.dateCheckData['requested'],
+        status: "current",
+        progress: 0,
+        paymentStatus: this.dateCheckData['paymentStatus']
       }
       //console.log(result);
-      
 
-      if(now > enddate)
-      {
+
+      if (now > enddate) {
         //alert('date has expired');
         this.toastr.success('Training date has expired');
       }
-      else
-      {
-        if(now >= startdate)
-        {
-          this.service.trainingEdit(id,result).subscribe(res => {
+      else {
+        if (now >= startdate) {
+          this.service.trainingEdit(id, result).subscribe(res => {
             //console.log('Started Successfully');
             this.toastr.success('Training Started Successfully');
             this.getTrainingByUserId();
             this.router.navigate(['/user/current-trainings']);
           });
         }
-        else
-        {
+        else {
           //alert('Wait till the start date');
           this.toastr.success('Wait till the start date');
         }
       }
-      
+
     });
-    
+
   }
 }
 

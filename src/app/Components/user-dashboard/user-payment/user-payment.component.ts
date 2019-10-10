@@ -11,8 +11,8 @@ export class UserPaymentComponent implements OnInit {
 
   paramId;
   TrainingDetails;
-  constructor(private service:UserDtlService,private toastr: ToastrService,private router: Router,private route:ActivatedRoute) { 
-    
+  constructor(private service: UserDtlService, private toastr: ToastrService, private router: Router, private route: ActivatedRoute) {
+
   }
 
   ngOnInit() {
@@ -33,13 +33,13 @@ export class UserPaymentComponent implements OnInit {
       //console.log(this.TrainingDetails.name);
     });
   }
-  onSubmit(){
-    var result={
-      amount:this.TrainingDetails['fees'],
-      mentorId:this.TrainingDetails['mentorId'],
-      mentorName:this.TrainingDetails['mentorName'],
-      trainingId:this.paramId,
-      skillName:this.TrainingDetails['skillname']
+  onSubmit() {
+    var result = {
+      amount: this.TrainingDetails['fees'],
+      mentorId: this.TrainingDetails['mentorId'],
+      mentorName: this.TrainingDetails['mentorName'],
+      trainingId: this.paramId,
+      skillName: this.TrainingDetails['skillname']
     }
     //console.log(result);
 
@@ -60,16 +60,16 @@ export class UserPaymentComponent implements OnInit {
       mentorName: this.TrainingDetails.mentorName,
       skillId: this.TrainingDetails.skillId,
       skillname: this.TrainingDetails.skillname,
-      requested:true,
-      paymentStatus:true
+      requested: true,
+      paymentStatus: true
     }
     console.log(result1);
-    this.service.trainingEdit(this.paramId,result1).subscribe(res => {
+    this.service.trainingEdit(this.paramId, result1).subscribe(res => {
       //console.log('success');
       this.toastr.success('Payment Successfull')
       //console.log(res);
     });
-    
+
   }
 
 }

@@ -1,37 +1,43 @@
-<div id="searchTrainings" >
+<div id="searchTrainings">
     <div style="width: 50%;margin-left: auto;margin-right: auto;margin-top: 5%;">
         <form [formGroup]="Search" (submit)="onSubmit(Search)">
             <div class="row">
                 <div class="col md-9">
-                    <select formControlName="technology" class="rounded dropdown form-control " >
-                        <option  value="" disabled>Select technology</option>
+                    <select formControlName="technology" class="rounded dropdown form-control ">
+                        <option value="" disabled>Select technology</option>
                         <option value="{{items.name}}" *ngFor="let items of skillData">{{items.name}}</option>
                     </select>
                 </div>
                 <div class="col-md-3" style="text-align: center;">
-                    <button class="btn" style="width: 100%;"><span class="glyphicon glyphicon-search"></span> Search </button>
+                    <button class="btn" style="width: 100%;"><span class="glyphicon glyphicon-search"></span> Search
+                    </button>
                 </div>
-                
+
             </div>
-        </form> 
+        </form>
     </div>
     <div style="width: 80%;margin-left: auto;margin-right: auto;">
-        <h3 class="text-center text-capitalize p-4" style="color:white;text-shadow: 2px 2px 2px #000000;">Search Results</h3>
+        <h3 class="text-center text-capitalize p-4" style="color:white;text-shadow: 2px 2px 2px #000000;">Search Results
+        </h3>
         <table class="table table-bordered table-striped" style="color: black;background-color: white;">
             <tbody id="myTable">
                 <tr>
-                    <th></th>
+                    <th>Id</th>
                     <th>Name of Mentor</th>
                     <th>Expertise</th>
                     <th>Year of Experience</th>
                     <th>Propose Training</th>
+                    <th>Action</th>
                 </tr>
-                <tr *ngFor="let items of Trainerdetails">
-                    <td><img src="assets/images/client.jpg" width="60px" height="60px" style="margin-top:3px;margin-left: 5px;"></td>
+                <tr *ngFor="let items of Trainerdetails;let i=index">
+                    <td>{{i+1}}</td>
+                    <td><img src="assets/images/client.jpg" width="60px" height="60px"
+                            style="margin-top:3px;margin-left: 5px;"></td>
                     <td>{{items.firstName}} {{items.lastName}}</td>
                     <td>{{items.training}}</td>
                     <td>{{items.yearOfExperience}}</td>
-                    <td><button type="button" class="btn btn-default" style="color:coral;" (click)="onPropose(items.id)">Propose Training</button></td>
+                    <td><button type="button" class="btn btn-default" style="color:coral;"
+                            (click)="onPropose(items.id)">Propose Training</button></td>
                 </tr>
             </tbody>
         </table>

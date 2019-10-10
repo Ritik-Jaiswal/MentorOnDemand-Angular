@@ -16,7 +16,7 @@ export class MentorNotificationComponent implements OnInit {
   rejectedTraining: object;
   TrainingData: object;
   TrainingDataById: any;
-  constructor(private service: UserDtlService,private toastr: ToastrService) { }
+  constructor(private service: UserDtlService, private toastr: ToastrService) { }
 
   ngOnInit() {
     this.mentorId = localStorage.getItem('mentor');
@@ -56,16 +56,16 @@ export class MentorNotificationComponent implements OnInit {
         mentorName: this.TrainingDataById.mentorName,
         skillId: this.TrainingDataById.skillId,
         skillname: this.TrainingDataById.skillname,
-        requested:true
+        requested: true
       }
       //console.log(result);
-      this.service.trainingEdit(id,result).subscribe(res => {
+      this.service.trainingEdit(id, result).subscribe(res => {
         //console.log('success');
         this.toastr.success('Proposal Accepted');
         ///console.log(res);
         this.getTrainingByMentorId();
       });
-      
+
     });
 
 
@@ -90,16 +90,16 @@ export class MentorNotificationComponent implements OnInit {
         mentorName: this.TrainingDataById.mentorName,
         skillId: this.TrainingDataById.skillId,
         skillname: this.TrainingDataById.skillname,
-        requested:true
+        requested: true
       }
       //console.log(result);
-      this.service.trainingEdit(id,result).subscribe(res => {
+      this.service.trainingEdit(id, result).subscribe(res => {
         //console.log('success');
         this.toastr.error('Proposal Denied');
         //console.log(res);
         this.getTrainingByMentorId();
       });
-      
+
     });
 
 

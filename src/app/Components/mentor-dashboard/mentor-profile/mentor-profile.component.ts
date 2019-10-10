@@ -15,11 +15,11 @@ export class MentorProfileComponent implements OnInit {
   fname: string;
   lname: string;
   uname: string;
-  linkdinUrl1:string;
+  linkdinUrl1: string;
   year1: number;
-  training:string;
+  training: string;
   edit: boolean = false;
-  constructor(private service: UserDtlService,private toastr: ToastrService) { }
+  constructor(private service: UserDtlService, private toastr: ToastrService) { }
 
   ngOnInit() {
     this.mentorId = localStorage.getItem('mentor');
@@ -34,9 +34,9 @@ export class MentorProfileComponent implements OnInit {
       this.lname = this.mentorData['lastName'];
       this.phoneNumber = this.mentorData['contactNumber'];
       this.uname = this.mentorData['userName'];
-      this.training=this.mentorData['training'];
-      this.linkdinUrl1=this.mentorData['linkdinUrl'];
-      this.year1=this.mentorData['yearOfExperience'];
+      this.training = this.mentorData['training'];
+      this.linkdinUrl1 = this.mentorData['linkdinUrl'];
+      this.year1 = this.mentorData['yearOfExperience'];
       console.log(this.phoneNumber);
       console.log(this.year1);
     });
@@ -55,15 +55,15 @@ export class MentorProfileComponent implements OnInit {
       userName: this.mentorData['userName'],
       role: this.mentorData['role'],
       active: this.mentorData['active'],
-      linkdinUrl:this.linkdinUrl1,
-      training:this.mentorData['training'],
-      yearOfExperience:+this.year1
+      linkdinUrl: this.linkdinUrl1,
+      training: this.mentorData['training'],
+      yearOfExperience: +this.year1
     }
     console.log(result);
     this.service.userDataEdit(this.mentorId, result).subscribe(data => {
       //console.log('success');
       this.toastr.success('Profile Updated Successfully');
-      
+
     });
     this.edit = false;
 

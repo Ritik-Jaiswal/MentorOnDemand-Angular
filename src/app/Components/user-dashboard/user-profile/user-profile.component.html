@@ -2,8 +2,9 @@
     <h3 class="text-center text-capitalize p-4" style="color:white;text-shadow: 2px 2px 2px #000000;">Profile </h3>
     <div class="row" style="color: black;">
         <div class="col-sm-4 text-center">
-            <img class="img-thumbnail m-3" alt="NA" src="/assets/images/client.jpg" width="200px" style="height: 200px;">
-            
+            <img class="img-thumbnail m-3" alt="NA" src="/assets/images/client.jpg" width="200px"
+                style="height: 200px;">
+
         </div>
         <div class="col-sm-8">
             <div class="modal-body">
@@ -13,10 +14,11 @@
                             <th>First Name</th>
                             <td>
                                 <div *ngIf="!edit">
-                                    {{fname}} 
+                                    {{fname}}
                                 </div>
                                 <div *ngIf="edit">
-                                        <input type="text" [(ngModel)]="fname"  name="fname" style="height: 30px;margin: 0px;" />
+                                    <input type="text" [(ngModel)]="fname" name="fname"
+                                        style="height: 30px;margin: 0px;" />
                                 </div>
                             </td>
                         </tr>
@@ -27,7 +29,8 @@
                                     {{lname}}
                                 </div>
                                 <div *ngIf="edit">
-                                        <input type="text" [(ngModel)]="lname"  name="lname" style="height: 30px;margin: 0px;"/>
+                                    <input type="text" [(ngModel)]="lname" name="lname"
+                                        style="height: 30px;margin: 0px;" />
                                 </div>
                             </td>
                         </tr>
@@ -39,7 +42,8 @@
                                     {{email}}
                                 </div>
                                 <div *ngIf="edit">
-                                        <input type="text" [(ngModel)]="email" [disabled]="true" name="email" style="height: 30px;margin: 0px;" />
+                                    <input type="text" [(ngModel)]="email" [disabled]="true" name="email"
+                                        style="height: 30px;margin: 0px;" />
                                 </div>
                             </td>
                         </tr>
@@ -50,7 +54,8 @@
                                     {{phoneNumber}}
                                 </div>
                                 <div *ngIf="edit">
-                                        <input type="text" [(ngModel)]="phoneNumber" name="phoneNumber" style="height: 30px;margin: 0px;" />
+                                    <input type="text" [(ngModel)]="phoneNumber" name="phoneNumber"
+                                        style="height: 30px;margin: 0px;" />
                                 </div>
                             </td>
                         </tr>
@@ -58,18 +63,20 @@
                 </table>
             </div>
             <div class="row">
-                    <div class="col md 10">
-                    </div>
-                    <div class="col md 2" style="text-align: right;">
-                        <div *ngIf="!edit" >
-                                <button type="button" class="btn btn-info btn-md m-4" (click)="editbutton()">Edit Profile </button>
-                        </div>
-                        <div *ngIf="edit">
-                                <button type="button" class="btn btn-info btn-md m-4" (click)="savebutton()">Save Details</button>
-                        </div>
-                    </div>
-                    
+                <div class="col md 10">
                 </div>
+                <div class="col md 2" style="text-align: right;">
+                    <div *ngIf="!edit">
+                        <button type="button" class="btn btn-info btn-md m-4" (click)="editbutton()">Edit Profile
+                        </button>
+                    </div>
+                    <div *ngIf="edit">
+                        <button type="button" class="btn btn-info btn-md m-4" (click)="savebutton()">Save
+                            Details</button>
+                    </div>
+                </div>
+
+            </div>
         </div>
     </div>
 </div>

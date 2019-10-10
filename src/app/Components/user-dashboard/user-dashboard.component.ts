@@ -10,14 +10,19 @@ export class UserDashboardComponent implements OnInit {
   constructor(private router: Router) { }
 
   id;
+  role;
 
   ngOnInit() {
-    this.id=localStorage.getItem('user');
+    this.id = localStorage.getItem('user');
+    this.role = localStorage.getItem('role');
+    if (this.role != 1) {
+      this.router.navigate(['index']);
+    }
   }
-  
-  logout()
-  {
-    localStorage.clear();
+
+  logout() {
+    localStorage.removeItem('role');
+    localStorage.removeItem('user');
     console.log(localStorage.getItem('user'));
     this.router.navigate(['index']);
   }

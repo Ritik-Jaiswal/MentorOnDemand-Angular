@@ -17,8 +17,8 @@ export class ProposeTrainingComponent implements OnInit {
   userData: any;
   skillData: object;
 
-  showRequestedCourse;any;
-  userId:any;
+  showRequestedCourse; any;
+  userId: any;
 
   timeSlot: string;
   startDate: Date;
@@ -28,17 +28,17 @@ export class ProposeTrainingComponent implements OnInit {
   name: string;
   fees: string;
   prerequisites: string;
-  yourName:string;
-  request:Boolean;
-  requestSent:any;
+  yourName: string;
+  request: Boolean;
+  requestSent: any;
 
-  constructor(private service:UserDtlService,private toastr: ToastrService,private router: Router,private route:ActivatedRoute) { 
+  constructor(private service: UserDtlService, private toastr: ToastrService, private router: Router, private route: ActivatedRoute) {
   }
 
   ngOnInit() {
     this.getParamData();
     this.getById();
-    this.userId=localStorage.getItem('user');
+    this.userId = localStorage.getItem('user');
     this.getUserById();
     this.getSkillByName();
   }
@@ -47,13 +47,13 @@ export class ProposeTrainingComponent implements OnInit {
     this.route.queryParams.subscribe(params => {
       let id = params['trainingId'];
       this.paramId = +id;
-      this.trainerTechnology=params['trainingName'];
+      this.trainerTechnology = params['trainingName'];
     });
   }
 
-  getSkillByName(){
-    this.service.refreshList1(this.trainerTechnology).subscribe(data=>{
-      this.skillData=data[0];
+  getSkillByName() {
+    this.service.refreshList1(this.trainerTechnology).subscribe(data => {
+      this.skillData = data[0];
       //console.log(this.skillData);
     });
   }
@@ -70,20 +70,20 @@ export class ProposeTrainingComponent implements OnInit {
     });
   }
 
-  onSubmit(){
-    var result={
+  onSubmit() {
+    var result = {
       timeSlot: this.timeSlot,
       startDate: this.startDate,
       endDate: this.endDate,
       userName: this.userData.firstName,
       fees: this.skillData['fees'],
-      userId:this.userData.id,
-      mentorId:this.trainerData.id,
-      mentorName:this.trainerData.firstName,
-      skillId:this.skillData['id'],
-      skillName:this.skillData['name'],
-      requested:'True',
-      paymentStatus:null
+      userId: this.userData.id,
+      mentorId: this.trainerData.id,
+      mentorName: this.trainerData.firstName,
+      skillId: this.skillData['id'],
+      skillName: this.skillData['name'],
+      requested: 'True',
+      paymentStatus: null
     }
     console.log(result);
     this.service.addtraining(result).subscribe(res => {
