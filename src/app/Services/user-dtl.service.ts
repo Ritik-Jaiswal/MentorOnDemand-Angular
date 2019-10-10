@@ -7,11 +7,19 @@ export class UserDtlService {
 
   isUserLoggedIn:boolean;
   getId:number;
+  loggedIn:boolean = false;
   readonly rootURL="https://localhost:44384/api";
 
   constructor(private http:HttpClient) {
     this.isUserLoggedIn=false;
    }
+
+   isLoggedIn() {
+    if (localStorage.getItem("id")) {
+      console.log(localStorage.getItem("id"));
+      return (this.loggedIn = true);
+    }
+  }
 
   getData(result){
     return this.http.post(this.rootURL+"/GetAllData",result);

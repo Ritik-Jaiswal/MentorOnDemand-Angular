@@ -13,13 +13,13 @@ export class UserDashboardComponent implements OnInit {
 
   ngOnInit() {
     this.id=localStorage.getItem('user');
-    
   }
+  
   logout()
   {
-    localStorage.removeItem('user');
+    localStorage.clear();
     console.log(localStorage.getItem('user'));
     this.router.navigate(['index']);
-  } 
+  }
 
 }

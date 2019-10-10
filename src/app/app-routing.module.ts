@@ -22,10 +22,15 @@ import { AuthGuard } from './auth/auth.guard';
 import { ProposeTrainingComponent } from './Components/user-dashboard/propose-training/propose-training.component';
 import { UserNotificationComponent } from './Components/user-dashboard/user-notification/user-notification.component';
 import { MentorNotificationComponent } from './Components/mentor-dashboard/mentor-notification/mentor-notification.component';
+import { UserNotLoggedInComponent } from './Components/user-not-logged-in/user-not-logged-in.component';
+import { Gaurd3Guard } from './auth/gaurd3.guard';
+import { Gaurd2Guard } from './auth/gaurd2.guard';
+import { Gaurd1Guard } from './auth/gaurd1.guard';
 
 const routes: Routes = [
   {path:'',redirectTo:'index',pathMatch:'full'},
   {path:'index',component:HomePageComponent},
+  {path:'user-nologin',component:UserNotLoggedInComponent},
   {path:'user',component:UserDashboardComponent,
   children:[
     {path:'search-results',component:UserSearchResultsComponent},

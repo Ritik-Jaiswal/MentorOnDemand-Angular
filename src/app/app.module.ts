@@ -30,6 +30,7 @@ import { AuthGuard } from './auth/auth.guard';
 import { ProposeTrainingComponent } from './Components/user-dashboard/propose-training/propose-training.component';
 import { UserNotificationComponent } from './Components/user-dashboard/user-notification/user-notification.component';
 import { MentorNotificationComponent } from './Components/mentor-dashboard/mentor-notification/mentor-notification.component';
+import { UserNotLoggedInComponent } from './Components/user-not-logged-in/user-not-logged-in.component';
 
 @NgModule({
   declarations: [
@@ -54,7 +55,8 @@ import { MentorNotificationComponent } from './Components/mentor-dashboard/mento
     AdminBlockMentorComponent,
     ProposeTrainingComponent,
     UserNotificationComponent,
-    MentorNotificationComponent
+    MentorNotificationComponent,
+    UserNotLoggedInComponent
   ],
   imports: [
     BrowserModule,

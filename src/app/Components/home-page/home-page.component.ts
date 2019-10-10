@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder,  Validators } from '@angular/forms';
-import { FormGroup,ReactiveFormsModule } from '@angular/forms';
-import {UserDtlService}from '../../Services/user-dtl.service';
+import { FormBuilder, Validators } from '@angular/forms';
+import { FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { UserDtlService } from '../../Services/user-dtl.service';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 @Component({
@@ -11,35 +11,35 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class HomePageComponent implements OnInit {
 
-  constructor(private fb:FormBuilder,private service:UserDtlService,private router: Router,private toastr: ToastrService) { }
+  constructor(private fb: FormBuilder, private service: UserDtlService, private router: Router, private toastr: ToastrService) { }
 
-  UserLogin:FormGroup;
-  MentorLogin:FormGroup;
-  AdminLogin:FormGroup;
-  UserRegister:FormGroup;
+  UserLogin: FormGroup;
+  MentorLogin: FormGroup;
+  AdminLogin: FormGroup;
+  UserRegister: FormGroup;
   MentorRegister: FormGroup;
   submitted = false;
-  formData:any;
+  formData: any;
 
-/* -----------------------RESET USER REGISTRATION-------------------------- */
+  /* -----------------------RESET USER REGISTRATION-------------------------- */
 
 
-  resetForm(fb ?: FormGroup){
-    this.UserRegister=this.fb.group({
-      firstName :'',
-      lastName :'',
-      userName :'',
-      password :'',
-      email :'',
-      contactNumber:'',
-      confirmPassword:''
+  resetForm(fb?: FormGroup) {
+    this.UserRegister = this.fb.group({
+      firstName: '',
+      lastName: '',
+      userName: '',
+      password: '',
+      email: '',
+      contactNumber: '',
+      confirmPassword: ''
     })
   }
 
   /* --------------------------------COMPARE PASSWORD------------------------------ */
 
 
-  MustMatch( controlName: string, matchingControlName: string){
+  MustMatch(controlName: string, matchingControlName: string) {
     return (formGroup: FormGroup) => {
       const control = formGroup.controls[controlName];
       const matchingControl = formGroup.controls[matchingControlName];
@@ -50,25 +50,24 @@ export class HomePageComponent implements OnInit {
       }
       // set error on matchingControl if validation fails
       if (control.value !== matchingControl.value) {
-          matchingControl.setErrors({ mustMatch: true });
-      } 
+        matchingControl.setErrors({ mustMatch: true });
+      }
       else {
-          matchingControl.setErrors(null);
+        matchingControl.setErrors(null);
       }
     }
   }
 
 
- /* --------------------SKILLS FROM ADMIN FOR MENTOR REGISTRATION----------------------- */
+  /* --------------------SKILLS FROM ADMIN FOR MENTOR REGISTRATION----------------------- */
 
 
- skillData:object;
-  getList()
-  {
-  this.service.refreshList().subscribe(data=>{
-    this.skillData=data;
-    console.log("mydata " ,this.skillData)
-  });
+  skillData: object;
+  getList() {
+    this.service.refreshList().subscribe(data => {
+      this.skillData = data;
+      console.log("mydata ", this.skillData)
+    });
   }
 
 
@@ -78,227 +77,230 @@ export class HomePageComponent implements OnInit {
 
   ngOnInit() {
 
-  this.UserRegister=this.fb.group({
-    firstName:['',[Validators.required,Validators.pattern('[a-zA-Z]*')]],
-    lastName:['',[Validators.required,Validators.pattern('[a-zA-Z]*')]],
-    userName:['',[Validators.required,Validators.pattern('[a-zA-Z]*')]],
-    email:['',[Validators.required,Validators.email,Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')]],
-    contactNumber:['',[Validators.required,Validators.pattern('^([6-9]{1})([0-9]{9})$')]],
-    password:['',[Validators.required,Validators.minLength(8)]],
-    confirmPassword:['',[Validators.required,Validators.minLength(8)]]
-    }, { validator: this.MustMatch('password', 'confirmPassword')
-  });
+    this.UserRegister = this.fb.group({
+      firstName: ['', [Validators.required, Validators.pattern('[a-zA-Z]*')]],
+      lastName: ['', [Validators.required, Validators.pattern('[a-zA-Z]*')]],
+      userName: ['', [Validators.required, Validators.pattern('[a-zA-Z]*')]],
+      email: ['', [Validators.required, Validators.email, Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')]],
+      contactNumber: ['', [Validators.required, Validators.pattern('^([6-9]{1})([0-9]{9})$')]],
+      password: ['', [Validators.required, Validators.minLength(8)]],
+      confirmPassword: ['', [Validators.required, Validators.minLength(8)]]
+    }, {
+      validator: this.MustMatch('password', 'confirmPassword')
+    });
 
-  this.UserLogin=this.fb.group({
-    email:['',[Validators.required,Validators.email,Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')]],
-    password:['',[Validators.required,Validators.minLength(8)]]
-  });
+    this.UserLogin = this.fb.group({
+      email: ['', [Validators.required, Validators.email, Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')]],
+      password: ['', [Validators.required, Validators.minLength(8)]]
+    });
 
-  this.MentorLogin=this.fb.group({
-    email:['',[Validators.required,Validators.email,Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')]],
-    password:['',[Validators.required,Validators.minLength(8)]]
-  });
+    this.MentorLogin = this.fb.group({
+      email: ['', [Validators.required, Validators.email, Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')]],
+      password: ['', [Validators.required, Validators.minLength(8)]]
+    });
 
-  this.AdminLogin=this.fb.group({
-    email:['',[Validators.required,Validators.email,Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')]],
-    password:['',[Validators.required,Validators.minLength(8)]]
-  });
+    this.AdminLogin = this.fb.group({
+      email: ['', [Validators.required, Validators.email, Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')]],
+      password: ['', [Validators.required, Validators.minLength(8)]]
+    });
 
-  this.MentorRegister=this.fb.group({
-    firstName:['',[Validators.required,Validators.pattern('[a-zA-Z]*')]],
-    lastName:['',[Validators.required,Validators.pattern('[a-zA-Z]*')]],
-    userName:['',[Validators.required,Validators.pattern('[a-zA-Z]*')]],
-    email:['',[Validators.required,Validators.email,Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')]],
-    contactNumber:['',[Validators.required,Validators.pattern('^([6-9]{1})([0-9]{9})$')]],
-    linkdinUrl:['',Validators.required],
-    technology:['',Validators.required],
-    yearOfExperience:['',Validators.required],
-    password:['',[Validators.required,Validators.minLength(8)]],
-    confirmPassword:['',[Validators.required,Validators.minLength(8)]]
-    },{validator:this.MustMatch('password', 'confirmPassword')
-  });
+    this.MentorRegister = this.fb.group({
+      firstName: ['', [Validators.required, Validators.pattern('[a-zA-Z]*')]],
+      lastName: ['', [Validators.required, Validators.pattern('[a-zA-Z]*')]],
+      userName: ['', [Validators.required, Validators.pattern('[a-zA-Z]*')]],
+      email: ['', [Validators.required, Validators.email, Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')]],
+      contactNumber: ['', [Validators.required, Validators.pattern('^([6-9]{1})([0-9]{9})$')]],
+      linkdinUrl: ['', Validators.required],
+      technology: ['', Validators.required],
+      yearOfExperience: ['', Validators.required],
+      password: ['', [Validators.required, Validators.minLength(8)]],
+      confirmPassword: ['', [Validators.required, Validators.minLength(8)]]
+    }, {
+      validator: this.MustMatch('password', 'confirmPassword')
+    });
 
-  this.getList();
+    this.getList();
 
 
   }
 
 
-/* -----------------------USER REGISTRATION-------------------------- */
+  /* -----------------------USER REGISTRATION-------------------------- */
 
 
-  result1:FormGroup;
+  result1: FormGroup;
 
-  onSubmit4(UserRegister ?: FormGroup){
+  onSubmit4(UserRegister?: FormGroup) {
 
     this.submitted = true;
     if (this.UserRegister.invalid) {
       return;
     }
-    
-    var result1={
-      firstName:this.UserRegister.value.firstName,
-      lastName:this.UserRegister.value.lastName,
-      userName:this.UserRegister.value.userName,
-      password:this.UserRegister.value.password,
-      email:this.UserRegister.value.email,
-      contactNumber:this.UserRegister.value.contactNumber,
-      role:1,
-      active:true
+
+    var result1 = {
+      firstName: this.UserRegister.value.firstName,
+      lastName: this.UserRegister.value.lastName,
+      userName: this.UserRegister.value.userName,
+      password: this.UserRegister.value.password,
+      email: this.UserRegister.value.email,
+      contactNumber: this.UserRegister.value.contactNumber,
+      role: 1,
+      active: true
     }
 
     this.service.signin(result1).subscribe(res => {
       this.toastr.success('Sign Up successfull');
-      //console.log(res);
-    })
-    
-    this.resetForm();
-    
-  }
-  
-/* -----------------------MENTOR REGISTRATION-------------------------- */
+      localStorage.setItem('user', res['id']);
+      console.log(localStorage.getItem('user'));
+      localStorage.setItem('role', this.res.role);
+      this.router.navigate(['user']);
+    });
 
-  result2:FormGroup;
-  onSubmit5(MentorRegister ?: FormGroup){
+    this.resetForm();
+
+  }
+
+  /* -----------------------MENTOR REGISTRATION-------------------------- */
+
+  result2: FormGroup;
+  onSubmit5(MentorRegister?: FormGroup) {
     this.submitted = true;
     if (this.MentorRegister.invalid) {
-        return;
+      return;
     }
-    var result2={
-      firstName:this.MentorRegister.value.firstName,
-      lastName:this.MentorRegister.value.lastName,
-      userName:this.MentorRegister.value.userName,
-      password:this.MentorRegister.value.password,
-      email:this.MentorRegister.value.email,
-      linkdinUrl:this.MentorRegister.value.linkdinUrl,
-      training:this.MentorRegister.value.technology,
-      yearOfExperience:this.MentorRegister.value.yearOfExperience,
-      contactNumber:this.MentorRegister.value.contactNumber,
-      role:2,
-      active:true
+    var result2 = {
+      firstName: this.MentorRegister.value.firstName,
+      lastName: this.MentorRegister.value.lastName,
+      userName: this.MentorRegister.value.userName,
+      password: this.MentorRegister.value.password,
+      email: this.MentorRegister.value.email,
+      linkdinUrl: this.MentorRegister.value.linkdinUrl,
+      training: this.MentorRegister.value.technology,
+      yearOfExperience: this.MentorRegister.value.yearOfExperience,
+      contactNumber: this.MentorRegister.value.contactNumber,
+      role: 2,
+      active: true
     }
     this.service.signin(result2).subscribe(res => {
       //console.log('successfully inserted');
-      this.service.isUserLoggedIn=true;
-      localStorage.setItem('mentor',this.res.id);
+      this.service.isUserLoggedIn = true;
+      localStorage.setItem('mentor', this.res.id);
+      localStorage.setItem('role', this.res.role);
       this.toastr.success('Sign Up successfull');
-          //console.log(localStorage.getItem('user'));
+      //console.log(localStorage.getItem('user'));
       this.router.navigate(['mentor']);
     })
     //this.resetForm();
   }
 
-/* -----------------------MENTOR LOGIN-------------------------- */
+  /* -----------------------MENTOR LOGIN-------------------------- */
 
 
   res;
   id;
-  onSubmit2(MentorLogin ?: FormGroup){
-  
-      this.submitted = true;
-      if (this.MentorLogin.invalid) {
-          return;
-      }
-      var result1={
-        password:this.MentorLogin.value.password,
-        email:this.MentorLogin.value.email
-      }
+  onSubmit2(MentorLogin?: FormGroup) {
 
-      this.service.login(result1).subscribe((data) => {
-      this.res=data;
-      if(this.res!=undefined)
-      {
+    this.submitted = true;
+    if (this.MentorLogin.invalid) {
+      return;
+    }
+    var result1 = {
+      password: this.MentorLogin.value.password,
+      email: this.MentorLogin.value.email
+    }
+
+    this.service.login(result1).subscribe((data) => {
+      this.res = data;
+      if (this.res != undefined) {
         //console.log(this.res||JSON);
-        if(this.res.role==2 && this.res.active==true)
-        {
-            localStorage.setItem('mentor',this.res.id);
-            this.toastr.success('Log in successfull');
-            //console.log("Logged Successfully")
-            this.id=this.res.id;
-            //console.log(this.id);
-            this.router.navigate(['mentor']);
+        if (this.res.role == 2 && this.res.active == true) {
+          localStorage.setItem('mentor', this.res.id);
+          localStorage.setItem('role', this.res.role);
+          this.toastr.success('Log in successfull');
+          //console.log("Logged Successfully")
+          this.id = this.res.id;
+          //console.log(this.id);
+          this.router.navigate(['mentor']);
         }
-        else{
+        else {
           this.toastr.error("Invalid Email or Password");
         }
       }
-      });
-      
-      
+    });
+
+
+  }
+
+  /* -----------------------USER LOGIN-------------------------- */
+
+  res1;
+  getId;
+  onSubmit1(UserLogin?: FormGroup) {
+
+    this.submitted = true;
+    if (this.UserLogin.invalid) {
+      return;
     }
-
-/* -----------------------USER LOGIN-------------------------- */
-
-    res1;
-    getId;
-    onSubmit1(UserLogin ?: FormGroup){
-  
-      this.submitted = true;
-      if (this.UserLogin.invalid) {
-          return;
-      }
-      var result1={
-        password:this.UserLogin.value.password,
-        email:this.UserLogin.value.email
-      }
-      this.service.login(result1).subscribe((data) => {
-      this.res=data;
-      if(this.res!=undefined)
-      {
+    var result1 = {
+      password: this.UserLogin.value.password,
+      email: this.UserLogin.value.email
+    }
+    this.service.login(result1).subscribe((data) => {
+      this.res = data;
+      if (this.res != undefined) {
         //console.log(this.res||JSON);
-        if(this.res.role==1 && this.res.active==true)
-        {
+        if (this.res.role == 1 && this.res.active == true) {
           this.toastr.success('Logged in successfully');
-          this.service.isUserLoggedIn=true;
-          localStorage.setItem('user',this.res.id);
+          this.service.isUserLoggedIn = true;
+          localStorage.setItem('role', this.res.role);
+          localStorage.setItem('user', this.res.id);
           //console.log(localStorage.getItem('user'));
           this.router.navigate(['user']);
         }
       }
-      else{
+      else {
         this.toastr.error("Invalid Email or Password");
       }
-    });  
+    });
+  }
+
+
+  /* ----------------------ADMIN LOGIN-------------------------- */
+
+
+  res2;
+  onSubmit3(AdminLogin?: FormGroup) {
+
+    this.submitted = true;
+    if (this.AdminLogin.invalid) {
+      return;
+    }
+    var result1 = {
+      password: this.AdminLogin.value.password,
+      email: this.AdminLogin.value.email
     }
 
-
-/* ----------------------ADMIN LOGIN-------------------------- */
-
-
-    res2;
-    onSubmit3(AdminLogin ?: FormGroup){
-  
-      this.submitted = true;
-      if (this.AdminLogin.invalid) {
-          return;
-      }
-      var result1={
-        password:this.AdminLogin.value.password,
-        email:this.AdminLogin.value.email
-      }
-
-      this.service.login(result1).subscribe((data) => {
-      this.res=data;
-      if(this.res!=undefined)
-      {
+    this.service.login(result1).subscribe((data) => {
+      this.res = data;
+      if (this.res != undefined) {
         //console.log(this.res||JSON);
-        if(this.res.role==3 && this.res.active==true)
-        {
-            //alert(JSON.stringify(this.res));
-            this.toastr.success('Log In successfull');
-            //console.log("Logged Successfully")
-            this.router.navigate(['admin']);
+        if (this.res.role == 3 && this.res.active == true) {
+          //alert(JSON.stringify(this.res));
+          this.toastr.success('Log In successfull');
+          //console.log("Logged Successfully")
+          this.router.navigate(['admin']);
+          localStorage.setItem('role', this.res.role);
         }
-        else{
+        else {
           this.toastr.error('Invalid Email or Password');
         }
       }
-        });
-      
-      
-    }
+    });
 
-    /* ---------------------------------------------------------- */
-  
+
+  }
+
+  /* ---------------------------------------------------------- */
+
 }
 

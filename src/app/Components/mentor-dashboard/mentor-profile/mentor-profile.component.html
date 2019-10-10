@@ -1,13 +1,13 @@
 <div class="container-fluid">
-    <h3 class="text-center text-capitalize p-4">Profile </h3>
-    <div class="row" style="color: black;border: 1px solid black;">
+    <h3 class="text-center text-capitalize p-4" style="color:white;text-shadow: 2px 2px 2px #000000;">Your Profile </h3>
+    <div class="row" style="color: black;">
         <div class="col-sm-4 text-center">
             <img class="img-thumbnail m-3" alt="NA" src="/assets/images/client.jpg" width="284" style="height: 300px;">
 
         </div>
         <div class="col-sm-8">
             <div class="modal-body">
-                <table class="table table-striped  table-bordered" style="color:black;">
+                <table class="table table-striped  table-bordered" style="color:black;background-color: white;">
                     <tbody>
                         <tr>
                             <th>First Name</th>
@@ -90,7 +90,7 @@
                 </div>
                 <div class="col md 2" style="text-align: right;">
                     <div *ngIf="!edit">
-                        <button type="button" class="btn btn-info btn-md m-4" (click)="editbutton()">Edit Profile
+                        <button type="button" class="btn btn-info btn-md m-4" style="background-color: coral;" (click)="editbutton()">Edit Profile
                         </button>
                     </div>
                     <div *ngIf="edit">
