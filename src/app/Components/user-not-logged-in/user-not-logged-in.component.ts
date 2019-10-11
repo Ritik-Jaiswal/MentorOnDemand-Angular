@@ -36,6 +36,17 @@ export class UserNotLoggedInComponent implements OnInit {
 
 
   }
+  Trainerdetails: object;
+  onSubmit() {
+    if (this.Search.invalid) {
+      return;
+    }
 
+    this.service.trainerList(this.Search.value.technology).subscribe(data => {
+      this.Trainerdetails = data;
+      console.log('checking');
+      console.log(this.Trainerdetails);
+    });
+  }
 }
 

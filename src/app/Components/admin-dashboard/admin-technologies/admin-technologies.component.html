@@ -99,10 +99,8 @@
                                     (click)="saveSkill(items.id)">Save</button></div>
                         </td>
                         <td>
-                            <div *ngIf="edit!=items.id"><button type="button" class="btn btn-danger btn-sm"
+                            <div ><button type="button" class="btn btn-danger btn-sm"
                                     (click)="deleteSkill(items.id)">Remove</button></div>
-                            <div *ngIf="edit==items.id"><button type="button" class="btn btn-danger btn-sm"
-                                    (click)="cancel(items.id)">Cancel</button></div>
                         </td>
                     </tr>
                 </table>
