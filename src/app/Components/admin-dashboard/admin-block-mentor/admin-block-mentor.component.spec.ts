@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { AdminBlockMentorComponent } from './admin-block-mentor.component';
 
@@ -6,7 +6,7 @@ describe('AdminBlockMentorComponent', () => {
   let component: AdminBlockMentorComponent;
   let fixture: ComponentFixture<AdminBlockMentorComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [ AdminBlockMentorComponent ]
     })
